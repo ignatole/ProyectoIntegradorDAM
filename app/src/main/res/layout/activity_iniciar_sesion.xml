@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_iniciar_sesion"
+    android:background="@drawable/fondo_inicio_sesion"
     tools:context=".iniciarSesion">
 
     <Button
@@ -74,7 +74,7 @@
         android:padding="16dp"
         android:singleLine="false"
         android:text="Club\nDeportivo"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
