@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_iniciar_sesion"
+    tools:context=".iniciarSesion">
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="152dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="565dp"
+        android:layout_marginEnd="243dp"
+        android:layout_marginBottom="91dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Iniciar sesion"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:cornerRadius="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/registerBtn"
+        android:layout_width="152dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="243dp"
+        android:layout_marginTop="565dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="91dp"
+        android:backgroundTint="#000000"
+        android:text="Registrarse"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:cornerRadius="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="142dp"
+        android:layout_height="153dp"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="263dp"
+        android:layout_marginEnd="135dp"
+        android:layout_marginBottom="315dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/pelota_basquet" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
