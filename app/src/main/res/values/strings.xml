@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">ProyectoIntegradorDAM</string>
+
+    //VIEW_MENU
+    <string name="title_userName">Hola, Jane</string>
+    <string name="menu_activities">Actividades</string>
+    <string name="menu_payments">Cobros</string>
+    <string name="menu_register">Registro</string>
+    <string name="menu_expirations">Vencimientos</string>
+
+    //VIEW_ACTIVITIES
+    <string name="button_assingShift">Asignar Turno</string>
+    <string name="button_newActivity">Nueva Actividad</string>
+    <string name="title_listOfActivities">Listado de Actividades</string>
+
+    //ModalForm_AssignShift
+
+    <string name="social">Social:</string>
+    <string name="activities">Actividades:</string>
+
 </resources>
