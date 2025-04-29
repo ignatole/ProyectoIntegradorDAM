@@ -1,26 +1,22 @@
-package com.example.proyectointegradordam
+package com.example.proyectointegradordam.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.proyectointegradordam.databinding.ActivityIniciarSesionBinding
-import com.example.proyectointegradordam.databinding.ActivityMainBinding
+import com.example.proyectointegradordam.R
 import com.example.proyectointegradordam.databinding.ActivityMenuBinding
-import com.example.proyectointegradordam.view.MenuActivity
 
-class MainActivity : AppCompatActivity() {
+class MenuActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityIniciarSesionBinding
+    private lateinit var binding: ActivityMenuBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityIniciarSesionBinding.inflate(layoutInflater)
+        binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         enableEdgeToEdge()
@@ -30,12 +26,9 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-
-        binding.loginBtn.setOnClickListener { navigateToMenu() }
-    }
-
-    private fun navigateToMenu(){
-        val intent = Intent(this, MenuActivity::class.java)
-        startActivity(intent)
+        binding.cvActivities.setOnClickListener{
+            val intent = Intent(this, ActividadesActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

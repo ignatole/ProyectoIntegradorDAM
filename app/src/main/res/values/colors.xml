@@ -2,4 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="bc_modalForm">#628262</color>
+
+    //MENU VIEW
+
+    <color name="bg_optionMenu">#B7F0C9</color>
+    <color name="bg_buttonRegular">#56F33B</color>
+
+
+
 </resources>
