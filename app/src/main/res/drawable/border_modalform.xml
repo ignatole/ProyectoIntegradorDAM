@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/white"/> <!-- Fondo interior -->
+    <stroke
+        android:width="4dp"
+        android:color="@color/bc_modalForm"/> <!-- Color y grosor del borde -->
+    <corners android:radius="8dp"/> <!-- Opcional: bordes redondeados -->
+</shape>
