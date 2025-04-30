@@ -7,18 +7,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.proyectointegradordam.databinding.ActivityIniciarSesionBinding
+import com.example.proyectointegradordam.databinding.ActivityInicioBinding
 import com.example.proyectointegradordam.view.MenuActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityIniciarSesionBinding
-
+    private lateinit var binding: ActivityInicioBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityIniciarSesionBinding.inflate(layoutInflater)
+        binding = ActivityInicioBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         enableEdgeToEdge()
@@ -33,11 +32,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
         binding.loginBtn.setOnClickListener { navigateToMenu() }
     }
 
-    private fun navigateToMenu(){
+    private fun navigateToMenu() {
         val intent = Intent(this, MenuActivity::class.java)
         startActivity(intent)
     }
