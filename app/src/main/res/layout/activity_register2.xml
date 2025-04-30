@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Register2"
+    android:background="@drawable/fondo">
+
+    <TextView
+        android:id="@+id/registerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="90dp"
+        android:fontFamily="@font/comfortaa_medium"
+        android:text="@string/register_title"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+
+    <EditText
+        android:id="@+id/editTextTextName"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="169dp"
+        android:autofillHints="emailAddress"
+        android:background="@drawable/input_border_shape"
+        android:ems="10"
+        android:textColor="@color/black"
+        android:fontFamily="@font/comfortaa_medium"
+        android:gravity="center_vertical"
+        android:hint="@string/nombre_y_apellido"
+        android:textColorHint="@color/black"
+        android:inputType="text"
+        android:paddingStart="17dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry" />
+
+    <EditText
+        android:id="@+id/editTextPhonePhone"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="244dp"
+        android:autofillHints="emailAddress"
+        android:background="@drawable/input_border_shape"
+        android:ems="10"
+        android:textColor="@color/black"
+        android:fontFamily="@font/comfortaa_medium"
+        android:gravity="center_vertical"
+        android:textColorHint="@color/black"
+        android:hint="@string/tel_fono"
+        android:inputType="phone"
+        android:paddingStart="17dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnNext2"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="325dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#000000"
+        android:fontFamily="@font/roboto_black"
+        android:text="@string/button_siguiente"
+        android:textColor="#FFFFFF"
+        android:textSize="13sp"
+        android:typeface="normal"
+        app:cornerRadius="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="372dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/roboto"
+        android:text="@string/TyC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnNext2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
