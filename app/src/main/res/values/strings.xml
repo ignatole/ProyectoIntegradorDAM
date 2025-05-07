@@ -34,4 +34,12 @@
     <string name="nombre_y_apellido">Nombre y apellido</string>
     <string name="tel_fono">Teléfono</string>
     <string name="TyC">Completando el registro, usted acepta los Términos y Condificiones del Servicio y la Política de Privacidad.</string>
+    //ModalForm_NewActivity
+
+    <string name="activity">Actividad:</string>
+    <string name="dayAndHour">Dia y Hora:</string>
+    <string name="tbn_selectDate">Seleccionar Dia y Hora</string>
+    <string name="cupos">Cupos:</string>
+    <string name="tbn_registerActivity">Registrar Actividad:</string>
+
 </resources>

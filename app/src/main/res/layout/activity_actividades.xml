@@ -24,10 +24,11 @@
             android:layout_width="193dp"
             android:layout_height="46dp"
             android:layout_marginBottom="15dp"
-            android:backgroundTint="@color/bg_buttonRegular"
+            android:backgroundTint="@color/bc_modalForm"
             android:shadowColor="@color/black"
             android:shadowDx="10"
             android:text="@string/button_assingShift"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
 
@@ -35,13 +36,15 @@
             android:id="@+id/btnNewActivity"
             android:layout_width="193dp"
             android:layout_height="46dp"
-            android:backgroundTint="@color/bg_buttonRegular"
+            android:backgroundTint="@color/bc_modalForm"
             android:text="@string/button_newActivity"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <TextView
+        android:id="@+id/tvListOfActivities"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -51,5 +54,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LinearButtons" />
+
+    <LinearLayout
+        android:id="@+id/container_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvListOfActivities">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
