@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyectointegradordam.R
 import com.example.proyectointegradordam.adapters.ActivityAdapter
 import com.example.proyectointegradordam.databinding.ActivityActividadesBinding
+import com.example.proyectointegradordam.databinding.ModalFormAssingshiftBinding
 import com.example.proyectointegradordam.databinding.ModalFormNewactivityBinding
 
 class ActividadesActivity : AppCompatActivity() {
@@ -54,7 +55,21 @@ class ActividadesActivity : AppCompatActivity() {
 
     private fun showModalFormAssingShift() {
         val dialog = Dialog(this)
-        dialog.setContentView(R.layout.modal_form_assingshift)
+        val modalBinding = ModalFormAssingshiftBinding.inflate(layoutInflater)
+        dialog.setContentView(modalBinding.root)
+
+        val anchoPx = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            400f,
+            resources.displayMetrics
+        ).toInt()
+
+        dialog.window?.setLayout(
+            anchoPx,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+
+        modalBinding.closeAssingShift.setOnClickListener{dialog.dismiss()}
 
         dialog.show()
     }
@@ -64,6 +79,10 @@ class ActividadesActivity : AppCompatActivity() {
         val modalBinding = ModalFormNewactivityBinding.inflate(layoutInflater)
 
         dialog.setContentView(modalBinding.root)
+
+        modalBinding.closeNewActivity.setOnClickListener{
+            dialog.dismiss()
+        }
 
         val anchoPx = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,

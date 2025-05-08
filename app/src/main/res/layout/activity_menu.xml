@@ -14,30 +14,30 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="80dp"
+        android:fontFamily="@font/comfortaa_medium"
         android:text="@string/title_userName"
         android:textColor="@color/black"
         android:textSize="50sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerMenu"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:layout_marginTop="30dp"
         android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="30dp"
         android:padding="20dp"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvActivities"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:selectableItemBackground"
             android:layout_width="150dp"
             android:layout_height="135dp"
             android:layout_marginStart="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:selectableItemBackground"
             app:cardBackgroundColor="@color/bg_optionMenu"
             app:cardCornerRadius="20dp"
             app:layout_constraintStart_toStartOf="@+id/containerMenu"
@@ -52,17 +52,16 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_actividades"
-                    />
+                    android:src="@drawable/ic_actividades" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/comfortaa_medium"
                     android:text="@string/menu_activities"
                     android:textColor="@color/black"
-                    android:fontFamily="sans-serif"
-                    android:textSize="16sp"
-                    android:layout_marginTop="5dp" />
+                    android:textSize="16sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -84,17 +83,16 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_cobros"
-                    />
+                    android:src="@drawable/ic_cobros" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/comfortaa_medium"
                     android:text="@string/menu_payments"
                     android:textColor="@color/black"
-                    android:fontFamily="sans-serif"
-                    android:textSize="16sp"
-                    android:layout_marginTop="10dp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -118,17 +116,16 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_people"
-                    />
+                    android:src="@drawable/ic_people" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/comfortaa_medium"
                     android:text="@string/menu_register"
                     android:textColor="@color/black"
-                    android:fontFamily="sans-serif"
-                    android:textSize="16sp"
-                    android:layout_marginTop="5dp" />
+                    android:textSize="16sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -150,17 +147,16 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_calendar"
-                    />
+                    android:src="@drawable/ic_calendar" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/comfortaa_medium"
                     android:text="@string/menu_expirations"
                     android:textColor="@color/black"
-                    android:fontFamily="sans-serif"
-                    android:textSize="16sp"
-                    android:layout_marginTop="5dp" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
