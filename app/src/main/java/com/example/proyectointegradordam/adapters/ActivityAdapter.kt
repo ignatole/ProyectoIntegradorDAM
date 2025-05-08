@@ -1,5 +1,9 @@
 package com.example.proyectointegradordam.adapters
 
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.SpannedString
+import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +31,18 @@ class ActivityAdapter(private val lista: List<Activities>):
 
     override fun onBindViewHolder(holder: ActivityViewHolder, position: Int) {
         val activities = lista[position]
-        holder.binding.tvActivity.text = activities.name
+
+        //SUBRAYAR TEXTO
+        val texto = activities.name
+        val subrayado = SpannableString(texto)
+        subrayado.setSpan(
+            UnderlineSpan(),
+            0,
+            texto.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        holder.binding.tvActivity.text = subrayado
         holder.binding.tvDateTime.text = activities.date
         holder.binding.tvCupo.text = "2 / ${activities.cupo}"
     }

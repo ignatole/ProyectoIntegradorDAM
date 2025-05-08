@@ -1,71 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/close_newActivity"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="end"
+        android:backgroundTint="@color/design_default_color_error"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:selectableItemBackground"
+        app:cardCornerRadius="30dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:text="@string/btn_x"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/comfortaa_medium"
         android:text="@string/activity"
-        android:textSize="20sp"
-        android:fontFamily=""/>
+        android:textSize="20sp" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:background="@drawable/input_border_shape"
         android:backgroundTint="#F5F5F5"
         android:paddingHorizontal="5dp"
-        android:paddingVertical="5dp"
-        android:layout_marginTop="8dp" />
+        android:paddingVertical="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dayAndHour"
-        android:textSize="20sp"
         android:layout_marginTop="20dp"
-        android:fontFamily=""/>
+        android:fontFamily="@font/comfortaa_medium"
+        android:text="@string/dayAndHour"
+        android:textSize="20sp" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btn_fecha_hora"
         android:layout_width="match_parent"
         android:layout_height="46dp"
-        android:text="@string/tbn_selectDate"
         android:layout_marginTop="8dp"
-        android:textColor="@color/white"
         android:backgroundTint="@color/bc_modalForm"
-        android:textSize="20sp"
-        />
+        android:fontFamily="@font/roboto_black"
+        android:text="@string/tbn_selectDate"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/cupos"
         android:layout_marginTop="20dp"
-        android:textSize="20sp"
-        android:fontFamily=""/>
+        android:fontFamily="@font/comfortaa_medium"
+        android:text="@string/cupos"
+        android:textSize="20sp" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:background="@drawable/input_border_shape"
         android:backgroundTint="#F5F5F5"
         android:paddingHorizontal="5dp"
-        android:paddingVertical="5dp"
-        android:layout_marginTop="8dp" />
+        android:paddingVertical="5dp" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btnAddShift"
         android:layout_width="match_parent"
         android:layout_height="46dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="15dp"
         android:backgroundTint="@color/bg_buttonRegular"
+        android:fontFamily="@font/roboto_black"
+        android:gravity="center"
         android:text="@string/tbn_registerActivity"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        android:gravity="center"/>
+        android:textSize="20sp" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

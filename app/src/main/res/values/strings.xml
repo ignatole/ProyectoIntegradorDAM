@@ -15,8 +15,9 @@
 
     //ModalForm_AssignShift
 
-    <string name="social">Social:</string>
+    <string name="socio">Socio:</string>
     <string name="activities">Actividades:</string>
+    <string name="btn_x">x</string>
 
     <string name="register_title">Registro</string>
     <string name="form_email">Email</string>
@@ -40,6 +41,9 @@
     <string name="dayAndHour">Dia y Hora:</string>
     <string name="tbn_selectDate">Seleccionar Dia y Hora</string>
     <string name="cupos">Cupos:</string>
-    <string name="tbn_registerActivity">Registrar Actividad:</string>
+    <string name="tbn_registerActivity">Registrar Actividad</string>
+
+    //Item_Activity
+    <string name="cupo">Cupo:</string>
 
 </resources>
