@@ -12,7 +12,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="end"
-        android:backgroundTint="@color/design_default_color_error"
+        android:backgroundTint="@color/white"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:selectableItemBackground"
@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:text="@string/btn_x"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="26sp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
@@ -67,7 +67,8 @@
         android:layout_height="46dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="15dp"
-        android:backgroundTint="@color/bg_buttonRegular"
+        android:backgroundTint="@color/bc_backgroundButton"
+        android:textColor="@color/white"
         android:gravity="center"
         android:text="@string/button_assingShift"
         android:textSize="20sp"
