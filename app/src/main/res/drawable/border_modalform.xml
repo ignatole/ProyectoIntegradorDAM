@@ -5,6 +5,6 @@
     <solid android:color="@color/white"/> <!-- Fondo interior -->
     <stroke
         android:width="4dp"
-        android:color="@color/bc_modalForm"/> <!-- Color y grosor del borde -->
+        android:color="@color/bc_backgroundButton"/> <!-- Color y grosor del borde -->
     <corners android:radius="8dp"/> <!-- Opcional: bordes redondeados -->
 </shape>
