@@ -32,7 +32,7 @@
                 android:id="@+id/btnCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/bc_modalForm"
+                android:backgroundTint="@color/bc_backgroundButton"
                 android:fontFamily="@font/roboto_black"
                 android:text="@string/btn_cancel"
                 android:textColor="@color/white"
