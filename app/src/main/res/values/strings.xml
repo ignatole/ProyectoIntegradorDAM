@@ -46,4 +46,9 @@
     //Item_Activity
     <string name="cupo">Cupo:</string>
 
+    //Modal_Confirm_delete
+    <string name="title_confirm_delete">Seguro deseas eliminar esta actividad?</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="btn_delete">Eliminar</string>
+
 </resources>
