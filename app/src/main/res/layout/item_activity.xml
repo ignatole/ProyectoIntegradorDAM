@@ -93,6 +93,7 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/btnEditItem"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:selectableItemBackground"
@@ -102,6 +103,7 @@
                 android:layout_marginBottom="20dp"/>
 
             <ImageView
+                android:id="@+id/btnDeleteItem"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:selectableItemBackground"

@@ -49,9 +49,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/comfortaa_medium"
         android:text="@string/activities"
-        android:textSize="20sp"
-        android:fontFamily="@font/comfortaa_medium"/>
+        android:textSize="20sp" />
 
     <androidx.appcompat.widget.AppCompatSpinner
         android:layout_width="match_parent"
@@ -71,8 +71,7 @@
         android:textColor="@color/white"
         android:gravity="center"
         android:text="@string/button_assingShift"
-        android:textSize="20sp"
-        android:fontFamily="@font/roboto_black"/>
+        android:textSize="20sp" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
