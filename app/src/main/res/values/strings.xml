@@ -42,4 +42,27 @@
     <string name="cupos">Cupos:</string>
     <string name="tbn_registerActivity">Registrar Actividad:</string>
 
+    //Registro de socio
+    <string name="registro_socio">Registro de Socio</string>
+    <string name="name">Nombre</string>
+    <string name="hint_name">Ingrese nombre</string>
+    <string name="last_name">Apellido</string>
+    <string name="hint_last_name">Ingrese apellido</string>
+    <string name="email">Email</string>
+    <string name="hint_email">Ingrese email</string>
+    <string name="cellphone">Celular</string>
+    <string name="hint_cell">Ingrese número de celular</string>
+    <string name="register_member">REGISTRAR</string>
+
+    //Edicion Socios
+    <string name="edit_member">BUSCAR</string>
+
+    //Descripcion de iconos
+    <string name="icono_volver">Icono_volver</string>
+    <string name="icono_hambur">Icono_hamburguesa</string>
+    
+    // Modal registro/edicion
+    <string name="register_btntxt">Registrar</string>
+    <string name="edition_btntxt">Editar</string>
+
 </resources>

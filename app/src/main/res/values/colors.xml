@@ -10,6 +10,9 @@
     <color name="bg_optionMenu">#B7F0C9</color>
     <color name="bg_buttonRegular">#56F33B</color>
 
+    //FONDO BOTON MODAL REGISTRO/EDICION
+    <color name="bg_botton">#76E69A</color>
+
 
 
 </resources>
