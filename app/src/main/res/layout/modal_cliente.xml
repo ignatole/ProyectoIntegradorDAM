@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/white"
+    android:elevation="10dp"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_registro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:minWidth="120dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:selectableItemBackground"
+        app:cardBackgroundColor="@color/bg_optionMenu"
+        app:cardCornerRadius="20dp"
+        >
+
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/btn_registrar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_people" />
+
+            <TextView
+                android:id="@+id/register_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_btntxt"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_edition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:minWidth="120dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:selectableItemBackground"
+        app:cardBackgroundColor="@color/bg_optionMenu"
+        app:cardCornerRadius="20dp">
+    <LinearLayout
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/btn_editar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerInside"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/edition_btntxt"
+            android:background="@color/bg_optionMenu"
+
+
+            android:src="@drawable/ic_editar_cliente" />
+
+        <TextView
+            android:id="@+id/edition_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto"
+            android:textSize="16sp"
+            android:text="@string/edition_btntxt" />
+
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
+
