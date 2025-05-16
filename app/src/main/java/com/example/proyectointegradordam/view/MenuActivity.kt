@@ -8,6 +8,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.proyectointegradordam.MemberEdit
+import com.example.proyectointegradordam.PaymentActivity
 import com.example.proyectointegradordam.R
 import com.example.proyectointegradordam.RegistroSocio
 import com.example.proyectointegradordam.databinding.ActivityMenuBinding
@@ -34,11 +35,14 @@ class MenuActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //Modal registro
+        binding.cvCobros.setOnClickListener{
+            val intent = Intent(this, PaymentActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.cardMembers.setOnClickListener {
             val dialogView = layoutInflater.inflate(R.layout.modal_cliente, null)
 
-            // encuentra los botones dentro del modal
             val btnRegistrar = dialogView.findViewById<CardView>(R.id.card_registro)
             val btnEditar = dialogView.findViewById<CardView>(R.id.card_edition)
 
@@ -46,9 +50,6 @@ class MenuActivity : AppCompatActivity() {
 
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-
-
-            // Boton registrar clientes
             btnRegistrar.setOnClickListener {
                 startActivity(Intent(this, RegistroSocio ::class.java))
                 dialog.dismiss()

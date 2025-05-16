@@ -13,6 +13,10 @@
     //FONDO BOTON MODAL REGISTRO/EDICION
     <color name="bg_botton">#76E69A</color>
 
-
+    //MODAL MENU
+    <color name="nav_background">#FFFFFF</color>  <!-- fondo blanco -->
+    <color name="nav_item_text">#000000</color>   <!-- texto negro -->
+    <color name="nav_item_icon">#2196F3</color>   <!-- íconos azul -->
+    <color name="selected_menu_item">#D0F0C0</color>
 
 </resources>

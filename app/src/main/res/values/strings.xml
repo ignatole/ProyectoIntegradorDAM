@@ -30,7 +30,7 @@
     <string name="button_siguiente">SIGUIENTE</string>
     <string name="registrarse">Registrarse</string>
     <string name="iniciar_sesion">Iniciar sesion</string>
-    <string name="club_ndeportivo">Club\nDeportivo</string>
+    <string name="club_ndeportivo">CLUB \nDEPORTIVO</string>
     <string name="logo_club">logo club</string>
     <string name="nombre_y_apellido">Nombre y apellido</string>
     <string name="tel_fono">Teléfono</string>
@@ -50,6 +50,16 @@
     <string name="title_confirm_delete">Seguro deseas eliminar esta actividad?</string>
     <string name="btn_cancel">Cancelar</string>
     <string name="btn_delete">Eliminar</string>
+    <string name="cobros">Cobros</string>
+    <string name="actividades">Actividades</string>
+    <string name="registro">Registro</string>
+    <string name="logo">Logo</string>
+    <string name="club_deportivo">Club Deportivo</string>
+
+    // Hamburguer menu
+    <string name="open">Abrir menú de navegación</string>
+    <string name="close">Cerrar menú de navegación</string>
+    <string name="fondo_de_la_app">Fondo de la app</string>
 
     //Registro de socio
     <string name="registro_socio">Registro de Socio</string>
@@ -73,5 +83,8 @@
     // Modal registro/edicion
     <string name="register_btntxt">Registrar</string>
     <string name="edition_btntxt">Editar</string>
+    <string name="maria">Maria</string>
+    <string name="icono">Icono</string>
+    <string name="cerrar_sesi_n">Cerrar sesión</string>
 
 </resources>

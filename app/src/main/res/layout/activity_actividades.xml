@@ -8,6 +8,18 @@
     android:background="@drawable/fondo"
     tools:context=".view.ActividadesActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        android:elevation="0dp"
+        app:title=""
+        app:titleTextColor="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/LinearButtons"
         android:layout_width="wrap_content"
@@ -22,7 +34,7 @@
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/btnAssingShift"
             android:layout_width="193dp"
-            android:layout_height="46dp"
+            android:layout_height="48dp"
             android:layout_marginBottom="15dp"
             android:backgroundTint="@color/bc_backgroundButton"
             android:fontFamily="@font/roboto"
@@ -37,13 +49,14 @@
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/btnNewActivity"
             android:layout_width="193dp"
-            android:layout_height="46dp"
+            android:layout_height="48dp"
             android:backgroundTint="@color/bc_backgroundButton"
             android:fontFamily="@font/roboto"
             android:text="@string/button_newActivity"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="TextSizeCheck" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
