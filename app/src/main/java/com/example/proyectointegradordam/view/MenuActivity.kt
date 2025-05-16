@@ -8,6 +8,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.proyectointegradordam.MemberEdit
+import com.example.proyectointegradordam.PaymentActivity
 import com.example.proyectointegradordam.R
 import com.example.proyectointegradordam.RegistroSocio
 import com.example.proyectointegradordam.databinding.ActivityMenuBinding
@@ -31,6 +32,11 @@ class MenuActivity : AppCompatActivity() {
 
         binding.cvActivities.setOnClickListener{
             val intent = Intent(this, ActividadesActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.cvCobros.setOnClickListener{
+            val intent = Intent(this, PaymentActivity::class.java)
             startActivity(intent)
         }
 

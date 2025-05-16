@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.proyectointegradordam.databinding.ActivityPaymentBinding
@@ -16,7 +15,7 @@ class PaymentActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPaymentBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentViewWithBinding(binding.root)
 
         enableEdgeToEdge()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -25,14 +24,11 @@ class PaymentActivity : BaseActivity() {
             insets
         }
 
-        binding.buttonPayment.setOnClickListener{
-            val dialog=Dialog(this)
+        binding.buttonPayment.setOnClickListener {
+            val dialog = Dialog(this)
             val modalBinding = ModalFormPaymentReceiptBinding.inflate(LayoutInflater.from(this))
             dialog.setContentView(modalBinding.root)
             dialog.show()
-
         }
-
     }
-
 }

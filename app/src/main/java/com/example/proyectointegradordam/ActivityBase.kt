@@ -1,9 +1,12 @@
 package com.example.proyectointegradordam
+
 import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.FrameLayout
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -18,37 +21,76 @@ open class BaseActivity : AppCompatActivity() {
         val fullView = layoutInflater.inflate(R.layout.activity_base, null)
         val contentFrame = fullView.findViewById<FrameLayout>(R.id.content_frame)
         layoutInflater.inflate(layoutResID, contentFrame, true)
-
         super.setContentView(fullView)
 
-        drawerLayout = fullView.findViewById(R.id.drawer_layout)
-        navView = fullView.findViewById(R.id.nav_inner_view)
+        setupDrawer(fullView)
+        setupBackDispatcher()
+    }
 
-        navView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.nav_actividades -> {
-                    startActivity(Intent(this, ActividadesActivity::class.java))
-                }
-//                R.id.nav_cobros -> startActivity(Intent(this, PerfilActivity::class.java))
-                R.id.nav_registro -> {
-                    startActivity(Intent(this, RegistroSocio::class.java))
-                }
-//                R.id.nav_salir -> finishAffinity() // Cerrar sesión
-            }
-            drawerLayout.closeDrawer(GravityCompat.START)
-            true
+    fun setContentViewWithBinding(view: View) {
+        val fullView = layoutInflater.inflate(R.layout.activity_base, null)
+        val contentFrame = fullView.findViewById<FrameLayout>(R.id.content_frame)
+        contentFrame.addView(view)
+        super.setContentView(fullView)
+
+        setupDrawer(fullView)
+        setupBackDispatcher()
+    }
+
+    private fun setupDrawer(fullView: View) {
+        drawerLayout = fullView.findViewById(R.id.drawer_layout)
+        navView = fullView.findViewById(R.id.nav_view)
+
+        val menuItemsView = fullView.findViewById<View>(R.id.nav_menu_items)
+
+        highlightMenuIfCurrent(
+            menuItemsView.findViewById(R.id.btn_cobros),
+            PaymentActivity::class.java
+        )
+
+        highlightMenuIfCurrent(
+            menuItemsView.findViewById(R.id.btn_actividades),
+            ActividadesActivity::class.java
+        )
+
+        highlightMenuIfCurrent(
+            menuItemsView.findViewById(R.id.btn_registro),
+            RegistroSocio::class.java
+        )
+
+        val logoutButton = fullView.findViewById<Button>(R.id.btn_logout)
+        logoutButton?.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            finish()
         }
 
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar?>(R.id.toolbar)
         if (toolbar != null) {
             setSupportActionBar(toolbar)
-
-            // Botón de "volver" en la izquierda
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
-
             supportActionBar?.setDisplayShowTitleEnabled(false)
         }
+    }
+
+    private fun setupBackDispatcher() {
+        onBackPressedDispatcher.addCallback(this) {
+            if (::drawerLayout.isInitialized && drawerLayout.isDrawerOpen(GravityCompat.END)) {
+                drawerLayout.closeDrawer(GravityCompat.END)
+            } else {
+                isEnabled = false
+                onBackPressedDispatcher.onBackPressed()
+            }
+        }
+    }
+
+    fun navigateFromDrawer(intent: Intent) {
+        drawerLayout.closeDrawer(GravityCompat.END)
+        drawerLayout.postDelayed({
+            startActivity(intent)
+        }, 200)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -65,38 +107,23 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    fun setContentViewWithBinding(view: View) {
-        val fullView = layoutInflater.inflate(R.layout.activity_base, null)
-        val contentFrame = fullView.findViewById<FrameLayout>(R.id.content_frame)
-        contentFrame.addView(view)
-        super.setContentView(fullView)
-
-        drawerLayout = fullView.findViewById(R.id.drawer_layout)
-        navView = fullView.findViewById(R.id.nav_inner_view)
-
-        val toolbar = findViewById<androidx.appcompat.widget.Toolbar?>(R.id.toolbar)
-        if (toolbar != null) {
-            setSupportActionBar(toolbar)
-
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
-
-            supportActionBar?.setDisplayShowTitleEnabled(false)
-        }
-
-        navView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.nav_actividades -> startActivity(Intent(this, ActividadesActivity::class.java))
-                R.id.nav_registro -> {
-                    startActivity(Intent(this, RegistroSocio::class.java))
-                }
-            }
-            drawerLayout.closeDrawer(GravityCompat.START)
-            true
-        }
-    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
         return true
+    }
+
+    private fun highlightMenuIfCurrent(
+        button: View?,
+        targetClass: Class<*>,
+        highlightColorRes: Int = R.color.selected_menu_item
+    ) {
+        if (this::class.java == targetClass) {
+            button?.setBackgroundColor(getColor(highlightColorRes))
+            button?.isEnabled = false
+        } else {
+            button?.setOnClickListener {
+                navigateFromDrawer(Intent(this, targetClass))
+            }
+        }
     }
 }
