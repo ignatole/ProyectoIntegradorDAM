@@ -34,11 +34,9 @@ class MenuActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //Modal registro
         binding.cardMembers.setOnClickListener {
             val dialogView = layoutInflater.inflate(R.layout.modal_cliente, null)
 
-            // encuentra los botones dentro del modal
             val btnRegistrar = dialogView.findViewById<CardView>(R.id.card_registro)
             val btnEditar = dialogView.findViewById<CardView>(R.id.card_edition)
 
@@ -46,9 +44,6 @@ class MenuActivity : AppCompatActivity() {
 
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-
-
-            // Boton registrar clientes
             btnRegistrar.setOnClickListener {
                 startActivity(Intent(this, RegistroSocio ::class.java))
                 dialog.dismiss()

@@ -6,25 +6,25 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.view.ViewGroup
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyectointegradordam.BaseActivity
 import com.example.proyectointegradordam.R
 import com.example.proyectointegradordam.adapters.ActivityAdapter
 import com.example.proyectointegradordam.databinding.ActivityActividadesBinding
 import com.example.proyectointegradordam.databinding.ModalFormAssingshiftBinding
 import com.example.proyectointegradordam.databinding.ModalFormNewactivityBinding
 
-class ActividadesActivity : AppCompatActivity() {
+class ActividadesActivity : BaseActivity() {
 
-    private lateinit var binding: ActivityActividadesBinding;
+    private lateinit var binding: ActivityActividadesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityActividadesBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentViewWithBinding(binding.root)
 
         enableEdgeToEdge()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -133,7 +133,5 @@ class ActividadesActivity : AppCompatActivity() {
             )
             datePicker.show()
         }
-
-        //dialog.show()
     }
 }

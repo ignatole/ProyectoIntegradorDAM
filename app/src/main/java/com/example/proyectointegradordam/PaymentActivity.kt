@@ -10,7 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.proyectointegradordam.databinding.ActivityPaymentBinding
 import com.example.proyectointegradordam.databinding.ModalFormPaymentReceiptBinding
 
-class PaymentActivity : AppCompatActivity() {
+class PaymentActivity : BaseActivity() {
     private lateinit var binding: ActivityPaymentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

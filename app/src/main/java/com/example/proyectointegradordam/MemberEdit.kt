@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class MemberEdit : AppCompatActivity() {
+class MemberEdit : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -16,11 +16,6 @@ class MemberEdit : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }
-        // boton volver
-        val btnVolver = findViewById<ImageButton>(R.id.btnBack)
-        btnVolver.setOnClickListener{
-            finish()
         }
     }
 }
