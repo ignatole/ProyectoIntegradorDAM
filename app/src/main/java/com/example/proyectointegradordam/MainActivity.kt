@@ -9,6 +9,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.proyectointegradordam.databinding.ActivityInicioBinding
 import com.example.proyectointegradordam.view.MenuActivity
+import androidx.cardview.widget.CardView
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,7 +35,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
         binding.loginBtn.setOnClickListener { navigateToMenu() }
+
     }
 
     private fun navigateToMenu() {
