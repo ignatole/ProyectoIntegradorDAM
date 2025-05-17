@@ -18,7 +18,7 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="#282727"
         android:fontFamily="sans-serif"
-        android:text="Registrarse"
+        android:text="@string/registrarse"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:cornerRadius="2dp"

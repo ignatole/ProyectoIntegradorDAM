@@ -92,4 +92,5 @@
     <string name="title_exp">Vencimientos</string>
     <string name="exp_date">Fecha</string>
     <string name="exp_dni">DNI</string>
+    <string name="dni_12345678_juan_perez">DNI 12345678 - Juan Perez</string>
 </resources>

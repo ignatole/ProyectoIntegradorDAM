@@ -8,10 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.proyectointegradordam.databinding.ActivityInicioBinding
-import com.example.proyectointegradordam.view.MenuActivity
-import androidx.cardview.widget.CardView
-
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,13 +31,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-        binding.loginBtn.setOnClickListener { navigateToMenu() }
+        val button2 = findViewById<Button>(R.id.loginBtn)
+        button2.setOnClickListener {
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)
+        }
 
     }
 
-    private fun navigateToMenu() {
-        val intent = Intent(this, MenuActivity::class.java)
-        startActivity(intent)
-    }
 }
