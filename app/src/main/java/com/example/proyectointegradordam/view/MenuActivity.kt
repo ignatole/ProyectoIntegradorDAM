@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.proyectointegradordam.ExpirationsList
 import com.example.proyectointegradordam.MemberEdit
 import com.example.proyectointegradordam.PaymentActivity
 import com.example.proyectointegradordam.R
@@ -59,6 +60,11 @@ class MenuActivity : AppCompatActivity() {
                 dialog.dismiss()
             }
             dialog.show()
+        }
+        binding.cardExpirations.setOnClickListener{
+            val intent = Intent(this, ExpirationsList::class.java)
+            startActivity(intent)
+
         }
 
     }
