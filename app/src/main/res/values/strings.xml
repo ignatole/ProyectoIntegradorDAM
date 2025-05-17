@@ -79,7 +79,7 @@
     //Descripcion de iconos
     <string name="icono_volver">Icono_volver</string>
     <string name="icono_hambur">Icono_hamburguesa</string>
-    
+
     // Modal registro/edicion
     <string name="register_btntxt">Registrar</string>
     <string name="edition_btntxt">Editar</string>
@@ -87,4 +87,9 @@
     <string name="icono">Icono</string>
     <string name="cerrar_sesi_n">Cerrar sesión</string>
 
+    // Vencimientos
+    <string name="exp_name">Miembro</string>
+    <string name="title_exp">Vencimientos</string>
+    <string name="exp_date">Fecha</string>
+    <string name="exp_dni">DNI</string>
 </resources>

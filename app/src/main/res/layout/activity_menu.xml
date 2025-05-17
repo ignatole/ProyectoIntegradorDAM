@@ -138,6 +138,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_expirations"
             android:layout_width="150dp"
             android:layout_height="135dp"
             android:layout_marginEnd="5dp"
@@ -146,10 +147,14 @@
             android:foreground="?android:selectableItemBackground"
             app:cardBackgroundColor="@color/bg_optionMenu"
             app:cardCornerRadius="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:selectableItemBackground"
             app:layout_constraintBottom_toBottomOf="@+id/containerMenu"
             app:layout_constraintEnd_toEndOf="@+id/containerMenu">
 
             <LinearLayout
+                android:id="@+id/btn_vencimientos"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
