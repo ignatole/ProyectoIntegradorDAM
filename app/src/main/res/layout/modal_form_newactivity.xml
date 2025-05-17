@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -32,6 +33,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/comfortaa_medium"
         android:text="@string/activity"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <EditText
@@ -49,6 +51,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/comfortaa_medium"
         android:text="@string/dayAndHour"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -68,6 +71,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/comfortaa_medium"
         android:text="@string/cupos"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <EditText
@@ -85,10 +89,11 @@
         android:layout_height="46dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="15dp"
-        android:backgroundTint="@color/bg_buttonRegular"
+        android:backgroundTint="@color/bc_backgroundButton"
         android:fontFamily="@font/roboto_black"
         android:gravity="center"
         android:text="@string/tbn_registerActivity"
+        android:textColor="@color/white"
         android:textSize="20sp" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

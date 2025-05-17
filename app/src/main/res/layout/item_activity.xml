@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="20dp"
+    android:layout_marginBottom="10dp"
     android:background="@color/bc_backgroundButton"
     android:padding="10dp"
-    android:layout_marginBottom="10dp">
+    app:cardCornerRadius="20dp">
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:background="#DFDFDF"
         android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:padding="15dp"
-        >
+        android:padding="15dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
 
             <TextView
@@ -32,54 +30,59 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:textSize="16sp"
                 android:fontFamily="@font/comfortaa_medium"
+                android:textColor="@color/black"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 tool:text="calistenia:" />
 
             <TextView
-                android:fontFamily="@font/comfortaa_medium"
                 android:layout_width="wrap_content"
+
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaa_medium"
                 android:text="@string/dayAndHour"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvDateTime"
-                android:fontFamily="@font/comfortaa_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
+                android:fontFamily="@font/comfortaa_medium"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 tool:text="22/04 - 18:00" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <TextView
-                    android:fontFamily="@font/comfortaa_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/comfortaa_medium"
                     android:text="@string/cupo"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     />
 
                 <TextView
-                    android:fontFamily="@font/comfortaa_medium"
                     android:id="@+id/tvCupo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/comfortaa_medium"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
-                    tool:text="8/10"
-                    android:layout_marginStart="5dp"/>
+                    tool:text="8/10" />
             </LinearLayout>
-
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -88,40 +91,36 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="150dp"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center|end"
+            android:paddingHorizontal="20dp"
+            android:orientation="vertical">
 
             <ImageView
+                android:scaleType="fitCenter"
                 android:id="@+id/btnEditItem"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginBottom="20dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:selectableItemBackground"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/edit_icon"
-                android:layout_marginBottom="20dp"/>
+                android:src="@drawable/edit_icon" />
 
             <ImageView
+                android:scaleType="fitCenter"
                 android:id="@+id/btnDeleteItem"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginBottom="20dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:selectableItemBackground"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/delete_icon"
-                android:layout_marginBottom="20dp"/>
+                android:src="@drawable/delete_icon" />
 
         </LinearLayout>
 
 
-
-
-
-
-
     </androidx.appcompat.widget.LinearLayoutCompat>
-
 
 
 </androidx.cardview.widget.CardView>
