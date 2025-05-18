@@ -44,11 +44,11 @@
         <EditText
             android:id="@+id/emailAddressInput"
             android:layout_width="0dp"
-            android:layout_height="42dp"
+            android:layout_height="50dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/rectangle_border"
+            android:background="@drawable/rounded_edittext"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:paddingStart="16dp"
@@ -70,45 +70,40 @@
             android:layout_marginStart="16dp"
             android:fontFamily="@font/comfortaa_regular"/>
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordInput"
             android:layout_width="0dp"
-            android:layout_height="42dp"
+            android:layout_height="50dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/rectangle_border"
             android:hint="@string/form_pass"
             android:inputType="textPassword"
             android:paddingStart="16dp"
-            android:paddingEnd="16dp"
+            android:paddingEnd="6dp"
+            android:autofillHints="password"
+            android:background="@drawable/rounded_edittext"
+            app:endIconMode="password_toggle"
+            app:hintEnabled="false"
             app:layout_constraintTop_toBottomOf="@+id/passwordTtl"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/passwordInput"
-            app:srcCompat="@drawable/ic_eye" />
 
         <Button
             android:id="@+id/loginBtn"
-            android:layout_width="186dp"
-            android:layout_height="46dp"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="296dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="16dp"
             android:backgroundTint="#282727"
-            android:fontFamily="sans-serif"
-            android:text="Iniciar Sesión"
+            android:fontFamily="@font/roboto_black"
+            android:text="@string/iniciar_sesi_n"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
-            app:cornerRadius="2dp"
+            app:cornerRadius="6dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.481"
             app:layout_constraintStart_toStartOf="parent"
