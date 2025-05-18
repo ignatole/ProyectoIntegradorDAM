@@ -3,6 +3,7 @@ package com.example.proyectointegradordam
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.SearchView
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
