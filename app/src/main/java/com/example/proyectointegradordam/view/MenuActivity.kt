@@ -1,13 +1,16 @@
 package com.example.proyectointegradordam.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.proyectointegradordam.ExpirationsList
@@ -22,6 +25,7 @@ class MenuActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMenuBinding
 
+    @SuppressLint("DiscouragedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,9 +44,9 @@ class MenuActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.btn_logout)
 
         button.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setTitle("¿Cerrar sesión?")
-                .setMessage("¿Estás seguro que quieres cerar sesión?")
+            val dialog = AlertDialog.Builder(this)
+                .setTitle("Cerrar sesión")
+                .setMessage("¿Estás seguro que quieres cerrar sesión?")
                 .setPositiveButton("Sí") { _, _ ->
                     val intent = Intent(this, Login::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -51,6 +55,15 @@ class MenuActivity : AppCompatActivity() {
                 }
                 .setNegativeButton("No", null)
                 .show()
+
+            dialog.window?.setBackgroundDrawableResource(R.color.white)
+
+            val titleId = resources.getIdentifier("alertTitle", "id", "android")
+            val titleTextView = dialog.findViewById<TextView>(titleId)
+            titleTextView?.setTextColor(ContextCompat.getColor(this, R.color.black))
+
+            val messageTextView = dialog.findViewById<TextView>(android.R.id.message)
+            messageTextView?.setTextColor(ContextCompat.getColor(this, R.color.black))
         }
 
         binding.cvActivities.setOnClickListener{

@@ -4,11 +4,11 @@
     android:id="@+id/modal_payment"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="20dp">
+    app:cardBackgroundColor="@color/white">
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="319dp"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical"
@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa_medium"
             android:gravity="center"
+            android:textColor="@color/black"
             android:text="Juan Perez"
             android:textAlignment="center"
             android:textSize="20sp" />
@@ -31,6 +32,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa_medium"
             android:gravity="center"
+            android:textColor="@color/black"
             android:text="Socio N°1234"
             android:textAlignment="center"
             android:textSize="20sp" />
@@ -40,6 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa_medium"
+            android:textColor="@color/black"
             android:gravity="center"
             android:text="Vencimiento: 23/06/2025"
             android:textAlignment="center"
@@ -50,6 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa_medium"
+            android:textColor="@color/black"
             android:gravity="center"
             android:text="Método de pago"
             android:textAlignment="center"

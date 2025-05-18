@@ -14,7 +14,8 @@
         android:fontFamily="@font/roboto"
         android:maxLines="1"
         android:ellipsize="end"
-        android:paddingEnd="8dp" />
+        android:paddingEnd="8dp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/txtDni"
@@ -24,7 +25,8 @@
         android:fontFamily="@font/roboto"
         android:maxLines="1"
         android:ellipsize="end"
-        android:paddingEnd="8dp" />
+        android:paddingEnd="8dp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/txtFecha"
@@ -33,5 +35,6 @@
         android:layout_weight="1"
         android:fontFamily="@font/roboto"
         android:maxLines="1"
-        android:ellipsize="end" />
+        android:ellipsize="end"
+        android:textColor="@color/black"/>
 </LinearLayout>
