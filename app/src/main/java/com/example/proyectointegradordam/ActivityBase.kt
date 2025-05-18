@@ -1,14 +1,17 @@
 package com.example.proyectointegradordam
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.proyectointegradordam.view.ActividadesActivity
@@ -38,6 +41,7 @@ open class BaseActivity : AppCompatActivity() {
         setupBackDispatcher()
     }
 
+    @SuppressLint("DiscouragedApi")
     private fun setupDrawer(fullView: View) {
         drawerLayout = fullView.findViewById(R.id.drawer_layout)
         navView = fullView.findViewById(R.id.nav_view)
@@ -62,7 +66,7 @@ open class BaseActivity : AppCompatActivity() {
         val logoutButton = fullView.findViewById<Button>(R.id.btn_logout)
 
         logoutButton.setOnClickListener {
-            AlertDialog.Builder(this)
+           val dialog = AlertDialog.Builder(this)
                 .setTitle("¿Cerrar sesión?")
                 .setMessage("¿Estás seguro que quieres cerar sesión?")
                 .setPositiveButton("Sí") { _, _ ->
@@ -73,6 +77,15 @@ open class BaseActivity : AppCompatActivity() {
                 }
                 .setNegativeButton("No", null)
                 .show()
+
+            dialog.window?.setBackgroundDrawableResource(R.color.white)
+
+            val titleId = resources.getIdentifier("alertTitle", "id", "android")
+            val titleTextView = dialog.findViewById<TextView>(titleId)
+            titleTextView?.setTextColor(ContextCompat.getColor(this, R.color.black))
+
+            val messageTextView = dialog.findViewById<TextView>(android.R.id.message)
+            messageTextView?.setTextColor(ContextCompat.getColor(this, R.color.black))
         }
 
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar?>(R.id.toolbar)
