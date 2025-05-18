@@ -2,12 +2,16 @@ package com.example.proyectointegradordam.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.proyectointegradordam.ExpirationsList
+import com.example.proyectointegradordam.Login
 import com.example.proyectointegradordam.MemberEdit
 import com.example.proyectointegradordam.PaymentActivity
 import com.example.proyectointegradordam.R
@@ -24,11 +28,29 @@ class MenuActivity : AppCompatActivity() {
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        onBackPressedDispatcher.addCallback(this) {}
+
         enableEdgeToEdge()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        val button = findViewById<Button>(R.id.btn_logout)
+
+        button.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("¿Cerrar sesión?")
+                .setMessage("¿Estás seguro que quieres cerar sesión?")
+                .setPositiveButton("Sí") { _, _ ->
+                    val intent = Intent(this, Login::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
 
         binding.cvActivities.setOnClickListener{
@@ -47,7 +69,7 @@ class MenuActivity : AppCompatActivity() {
             val btnRegistrar = dialogView.findViewById<CardView>(R.id.card_registro)
             val btnEditar = dialogView.findViewById<CardView>(R.id.card_edition)
 
-            val dialog = androidx.appcompat.app.AlertDialog.Builder(this).setView(dialogView).create()
+            val dialog = AlertDialog.Builder(this).setView(dialogView).create()
 
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 

@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
 import androidx.activity.addCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -59,11 +60,19 @@ open class BaseActivity : AppCompatActivity() {
         )
 
         val logoutButton = fullView.findViewById<Button>(R.id.btn_logout)
-        logoutButton?.setOnClickListener {
-            val intent = Intent(this, Login::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-            finish()
+
+        logoutButton.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("¿Cerrar sesión?")
+                .setMessage("¿Estás seguro que quieres cerar sesión?")
+                .setPositiveButton("Sí") { _, _ ->
+                    val intent = Intent(this, Login::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
 
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar?>(R.id.toolbar)
