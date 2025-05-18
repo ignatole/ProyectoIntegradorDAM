@@ -11,7 +11,7 @@ jobs:
       github.actor == 'illeiva2'     ||
       github.actor == 'RominaGG'     ||
       github.actor == 'ignatole'     ||
-      github.actor == 'Lauce'     
+      github.actor == 'Lauce'
     runs-on: ubuntu-latest
     steps:
       - name: Esperar que GitHub calcule mergeability
@@ -22,34 +22,27 @@ jobs:
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          result-encoding: string
           script: |
             const { data: pr } = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number,
             });
+
+            core.setOutput('mergeable', pr.mergeable);
+            core.setOutput('number', pr.number);
       
-            return {
-              mergeable: pr.mergeable,
-              number: pr.number
-            };
-
-
-            return {
-              mergeable: pr.data.mergeable,
-              number: pr.data.number
-            };
-
       - name: Hacer merge si es posible
-        if: steps.prdata.outputs.result && fromJson(steps.prdata.outputs.result).mergeable == true
+        if: steps.prdata.outputs.mergeable == 'true'
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const prNumber = fromJson(steps.prdata.outputs.result).number;
-            await github.pulls.merge({
+            await github.rest.pulls.merge({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: prNumber,
-              merge_method: 'squash' // podés cambiarlo a 'merge' o 'rebase'
+              pull_number: parseInt('${{ steps.prdata.outputs.number }}'),
+              merge_method: 'squash'
             });
+
