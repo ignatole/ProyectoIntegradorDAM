@@ -10,6 +10,7 @@ jobs:
       github.actor == 'Gonzalopaz41' ||
       github.actor == 'illeiva2'     ||
       github.actor == 'RominaGG'     ||
+      github.actor == 'ignatole'     ||
       github.actor == 'Lauce'     
     runs-on: ubuntu-latest
     steps:
