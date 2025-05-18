@@ -18,16 +18,22 @@ jobs:
         run: sleep 10
 
       - name: Obtener estado del PR
-        uses: actions/github-script@v7
         id: prdata
+        uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const pr = await github.pulls.get({
+            const { data: pr } = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number,
             });
+      
+            return {
+              mergeable: pr.mergeable,
+              number: pr.number
+            };
+
 
             return {
               mergeable: pr.data.mergeable,
