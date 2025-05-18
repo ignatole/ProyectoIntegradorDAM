@@ -87,7 +87,7 @@ El proyecto está preparado para escalar fácilmente. Cada `Activity` nueva que 
 ProyectoIntegradorDAM/
 ├── java/com/example/proyectointegradordam/
 │   ├── BaseActivity.kt                  # Base para todas las pantallas con menú y toolbar
-│   ├── MainActivity.kt                  # Pantalla inicial
+│   ├── Inicio.kt                        # Pantalla inicial
 │   ├── RegistroSocio.kt                 # Registro de socios
 │   ├── PaymentActivity.kt               # Sección de cobros
 │   ├── view/
@@ -108,8 +108,8 @@ ProyectoIntegradorDAM/
 │   │   └── toolbar_menu.xml                # Ícono del menú hamburguesa
 │   │
 │   ├── drawable/
-│   │   ├── fondo_difuminado.png
-│   │   └── ic_*.xml
+│   │   ├── fondo_difuminado.png            # Fondo de menú
+│   │   └── ic_*.xml			    # Todos los íconos empiezan con esa nomenclatura
 │   │
 │   └── values/
 │       ├── strings.xml
