@@ -85,7 +85,7 @@
     <string name="edition_btntxt">Editar</string>
     <string name="maria">Maria</string>
     <string name="icono">Icono</string>
-    <string name="cerrar_sesi_n">Cerrar sesión</string>
+    <string name="cerrar_sesi_n">CERRAR SESION</string>
 
     // Vencimientos
     <string name="exp_name">Miembro</string>
