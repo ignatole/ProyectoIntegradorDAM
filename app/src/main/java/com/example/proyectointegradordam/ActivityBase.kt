@@ -60,7 +60,7 @@ open class BaseActivity : AppCompatActivity() {
 
         val logoutButton = fullView.findViewById<Button>(R.id.btn_logout)
         logoutButton?.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, Login::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
             finish()

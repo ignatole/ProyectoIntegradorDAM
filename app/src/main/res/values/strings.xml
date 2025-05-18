@@ -34,7 +34,7 @@
     <string name="logo_club">logo club</string>
     <string name="nombre_y_apellido">Nombre y apellido</string>
     <string name="tel_fono">Teléfono</string>
-    <string name="TyC">Completando el registro, usted acepta los Términos y Condificiones del Servicio y la Política de Privacidad.</string>
+    <string name="TyC">Acepto los Términos y Condificiones del Servicio y la Política de Privacidad.</string>
     //ModalForm_NewActivity
 
     <string name="activity">Actividad:</string>
@@ -92,4 +92,8 @@
     <string name="title_exp">Vencimientos</string>
     <string name="exp_date">Fecha</string>
     <string name="exp_dni">DNI</string>
+    <string name="dni_12345678_juan_perez">DNI 12345678 - Juan Perez</string>
+    <string name="jane_doe">Jane Doe</string>
+    <string name="_5411123456789">+5411123456789</string>
+    <string name="iniciar_sesi_n">INICIAR SESION</string>
 </resources>

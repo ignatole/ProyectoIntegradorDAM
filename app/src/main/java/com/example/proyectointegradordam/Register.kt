@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.proyectointegradordam.view.MenuActivity
 
 class Register : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +21,7 @@ class Register : AppCompatActivity() {
         }
         val button = findViewById<Button>(R.id.btnNext)
         button.setOnClickListener {
-            val intent = Intent(this, Register2::class.java)
+            val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
         }
     }

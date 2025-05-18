@@ -147,9 +147,6 @@
             android:foreground="?android:selectableItemBackground"
             app:cardBackgroundColor="@color/bg_optionMenu"
             app:cardCornerRadius="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:selectableItemBackground"
             app:layout_constraintBottom_toBottomOf="@+id/containerMenu"
             app:layout_constraintEnd_toEndOf="@+id/containerMenu">
 
