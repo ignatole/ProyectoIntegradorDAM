@@ -2,6 +2,7 @@ package com.example.proyectointegradordam
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -14,12 +15,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.proyectointegradordam.database.clubDeportivoDBHelper
 import com.example.proyectointegradordam.view.ActividadesActivity
 import com.google.android.material.navigation.NavigationView
 
 open class BaseActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
+    protected lateinit var dbHelper: clubDeportivoDBHelper
+    protected lateinit var db: SQLiteDatabase
 
     override fun setContentView(layoutResID: Int) {
         val fullView = layoutInflater.inflate(R.layout.activity_base, null)
@@ -27,9 +31,13 @@ open class BaseActivity : AppCompatActivity() {
         layoutInflater.inflate(layoutResID, contentFrame, true)
         super.setContentView(fullView)
 
+        dbHelper = clubDeportivoDBHelper(this)
+        db = dbHelper.writableDatabase
+
         setupDrawer(fullView)
         setupBackDispatcher()
     }
+
 
     fun setContentViewWithBinding(view: View) {
         val fullView = layoutInflater.inflate(R.layout.activity_base, null)
@@ -128,6 +136,7 @@ open class BaseActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+    open fun useDrawer(): Boolean = true
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)

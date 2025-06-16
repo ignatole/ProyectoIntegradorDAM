@@ -7,7 +7,7 @@
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
+        android:id="@+id/login_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/fondo_general_1"
@@ -83,7 +83,9 @@
             app:endIconMode="password_toggle"
             app:layout_constraintTop_toBottomOf="@+id/passwordTtl"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            android:inputType="textPassword"
+            android:hint="Password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordEditText"
