@@ -25,6 +25,7 @@ class Inicio : AppCompatActivity() {
         }
         val button2 = findViewById<Button>(R.id.loginBtn)
         button2.setOnClickListener {
+            // Solo navega sin lógica
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
         }
