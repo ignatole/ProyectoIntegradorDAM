@@ -37,6 +37,26 @@
         android:textSize="20sp" />
 
     <EditText
+        android:id="@+id/etNombreActividad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/input_border_shape"
+        android:backgroundTint="#F5F5F5"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/comfortaa_medium"
+        android:text="Profesor:"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/etProfesor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -55,7 +75,7 @@
         android:textSize="20sp" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/btn_fecha_hora"
+        android:id="@+id/btnFechaHora"
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:layout_marginTop="8dp"
@@ -75,6 +95,26 @@
         android:textSize="20sp" />
 
     <EditText
+        android:id="@+id/etCupo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/input_border_shape"
+        android:backgroundTint="#F5F5F5"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/comfortaa_medium"
+        android:text="Costo:"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/etCosto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
