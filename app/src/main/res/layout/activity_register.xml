@@ -149,13 +149,23 @@
         android:layout_marginStart="-10dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="16dp"
-        android:autofillHints="password"
         android:background="@drawable/rounded_edittext"
         app:endIconMode="password_toggle"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/formPass"
         app:layout_constraintTop_toBottomOf="@id/formPass">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:fontFamily="@font/comfortaa_medium"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:paddingStart="17dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -178,15 +188,23 @@
         android:layout_marginStart="-10dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="16dp"
-        android:autofillHints="password"
         android:background="@drawable/rounded_edittext"
-        android:hint="@string/contrase_a"
-        android:inputType="textPassword"
         app:endIconMode="password_toggle"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/form_repeat_pass"
         app:layout_constraintTop_toBottomOf="@id/form_repeat_pass">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextRepeatPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Repetir contraseña"
+            android:inputType="textPassword"
+            android:fontFamily="@font/comfortaa_medium"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:paddingStart="17dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView

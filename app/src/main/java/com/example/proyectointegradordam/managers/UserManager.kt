@@ -10,11 +10,13 @@ class UserManager(private val context: Context) {
 
     private val dbHelper = clubDeportivoDBHelper(context)
 
-    fun insertUser(username: String, password: String, isActive: Boolean = true): Long {
+    fun insertUser(username: String, password: String,name: String,cellphone: String, isActive: Boolean = true): Long {
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
             put("nombre_usuario", username)
             put("pass_usuario", password)
+            put("nombre", name)
+            put("telefono", cellphone)
             put("activo", if (isActive) 1 else 0)
         }
         return db.insert("usuario", null, values)
@@ -31,6 +33,8 @@ class UserManager(private val context: Context) {
                     id = cursor.getInt(cursor.getColumnIndexOrThrow("id_usuario")),
                     username = cursor.getString(cursor.getColumnIndexOrThrow("nombre_usuario")),
                     password = cursor.getString(cursor.getColumnIndexOrThrow("pass_usuario")),
+                    name = cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
+                    cellphone = cursor.getString(cursor.getColumnIndexOrThrow("telefono")),
                     isActive = cursor.getInt(cursor.getColumnIndexOrThrow("activo")) == 1
                 )
                 userList.add(user)
@@ -54,6 +58,8 @@ class UserManager(private val context: Context) {
                 id = cursor.getInt(cursor.getColumnIndexOrThrow("id_usuario")),
                 username = cursor.getString(cursor.getColumnIndexOrThrow("nombre_usuario")),
                 password = cursor.getString(cursor.getColumnIndexOrThrow("pass_usuario")),
+                name = cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
+                cellphone = cursor.getString(cursor.getColumnIndexOrThrow("telefono")),
                 isActive = cursor.getInt(cursor.getColumnIndexOrThrow("activo")) == 1
             )
         }
