@@ -1,8 +1,10 @@
 package com.example.proyectointegradordam.database
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.proyectointegradordam.models.Cliente
 
 class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -81,4 +83,44 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
         db.execSQL("DROP TABLE IF EXISTS cliente")
         onCreate(db)
     }
+    fun buscarClientePorNombre(texto: String): List<Cliente>{
+        val db = readableDatabase
+        val cursor = db.rawQuery(
+            "SELECT * FROM cliente WHERE nombre LIKE ? OR apellido LIKE ?",
+            arrayOf("%$texto%", "%$texto%")
+        )
+        val lista = mutableListOf<Cliente>()
+        if(cursor.moveToFirst()){
+            do{
+                lista.add(
+                    Cliente(
+                        cursor.getInt(cursor.getColumnIndexOrThrow("id_cliente")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("apellido")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("email")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("telefono"))
+                    )
+                )
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return lista
+
+    }
+
+    fun actualizarDatosCliente(
+        id: Int,
+        email: String,
+        telefono: String
+    ): Int{
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("email", email)
+            put("telefono", telefono)
+        }
+        return db.update("cliente", values, "id_cliente = ?", arrayOf(id.toString()))
+
+    }
+
+
 }
