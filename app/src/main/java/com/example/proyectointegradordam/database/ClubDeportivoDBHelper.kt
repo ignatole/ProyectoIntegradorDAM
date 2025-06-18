@@ -8,7 +8,7 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
 
     companion object {
         const val DATABASE_NAME = "clubdeportivo.db"
-        const val DATABASE_VERSION = 1
+        const val DATABASE_VERSION = 3
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -53,6 +53,8 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
             CREATE TABLE usuario (
                 id_usuario INTEGER PRIMARY KEY AUTOINCREMENT,
                 nombre_usuario TEXT NOT NULL,
+                nombre TEXT NOT NULL,
+                telefono TEXT NOT NULL,
                 pass_usuario TEXT NOT NULL,
                 activo INTEGER DEFAULT 1
                 )
@@ -68,7 +70,7 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
         """)
 
         // Datos iniciales
-        db.execSQL("INSERT INTO usuario (nombre_usuario, pass_usuario, activo) VALUES ('Test', '123456', 1)")
+        db.execSQL("INSERT INTO usuario (nombre_usuario, pass_usuario, activo, nombre, telefono) VALUES ('Test', '123456', 1, 'Test', '0000000000')")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
