@@ -5,7 +5,6 @@ import android.content.Context
 import android.icu.util.Calendar
 import android.text.Spannable
 import android.text.SpannableString
-import android.text.SpannedString
 import android.text.style.UnderlineSpan
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -16,11 +15,10 @@ import com.example.proyectointegradordam.databinding.ItemActivityBinding
 import com.example.proyectointegradordam.databinding.ModalConfirmDeleteBinding
 import com.example.proyectointegradordam.databinding.ModalFormNewactivityBinding
 import com.example.proyectointegradordam.managers.ActivitiesManager
-import com.example.proyectointegradordam.view.Activities
-
+import com.example.proyectointegradordam.models.Activities
 
 class ActivityAdapter(
-    private var lista: List<ActivitiesManager.Actividad>,
+    private var lista: List<Activities>,
     private val listener: OnActividadActualizadaListener
 ) : RecyclerView.Adapter<ActivityAdapter.ActivityViewHolder>() {
 
@@ -41,14 +39,15 @@ class ActivityAdapter(
     override fun onBindViewHolder(holder: ActivityViewHolder, position: Int) {
         val actividad = lista[position]
 
-        // SUBRAYAR TEXTO
-        val subrayado = SpannableString(actividad.nombre)
-        subrayado.setSpan(
-            UnderlineSpan(),
-            0,
-            actividad.nombre.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
+        // Subrayar el nombre
+        val subrayado = SpannableString(actividad.nombre).apply {
+            setSpan(
+                UnderlineSpan(),
+                0,
+                actividad.nombre.length,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
 
         holder.binding.tvActivity.text = subrayado
         holder.binding.tvProfesor.text = actividad.profesor
@@ -64,30 +63,27 @@ class ActivityAdapter(
         }
     }
 
-    private fun showModalFormEdit(context: Context, actividad: ActivitiesManager.Actividad) {
+    private fun showModalFormEdit(context: Context, actividad: Activities) {
         val dialog = Dialog(context)
         val modalBinding = ModalFormNewactivityBinding.inflate(LayoutInflater.from(context))
         dialog.setContentView(modalBinding.root)
 
-        val activities = ActivitiesManager(context)
+        val activitiesManager = ActivitiesManager(context)
         val calendario = Calendar.getInstance()
         var fechaHoraSeleccionada = actividad.horario
 
-        // Completar campos con datos existentes
+        // Campos prellenados
         modalBinding.etNombreActividad.setText(actividad.nombre)
         modalBinding.etProfesor.setText(actividad.profesor)
         modalBinding.etCosto.setText(actividad.costo.toString())
         modalBinding.etCupo.setText(actividad.cupo.toString())
         modalBinding.btnFechaHora.text = actividad.horario
 
-        // Selección de fecha y hora
         modalBinding.btnFechaHora.setOnClickListener {
             val datePicker = android.app.DatePickerDialog(
                 context,
                 { _, year, month, dayOfMonth ->
-                    calendario.set(Calendar.YEAR, year)
-                    calendario.set(Calendar.MONTH, month)
-                    calendario.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                    calendario.set(year, month, dayOfMonth)
 
                     val timePicker = android.app.TimePickerDialog(
                         context,
@@ -123,7 +119,7 @@ class ActivityAdapter(
             val costo = modalBinding.etCosto.text.toString().toFloatOrNull() ?: 0f
 
             if (nombre.isNotBlank() && profesor.isNotBlank() && cupo > 0 && costo >= 0 && fechaHoraSeleccionada.isNotEmpty()) {
-                val nuevaActividad = ActivitiesManager.Actividad(
+                val nuevaActividad = Activities(
                     id = actividad.id,
                     nombre = nombre,
                     profesor = profesor,
@@ -133,7 +129,7 @@ class ActivityAdapter(
                     cupo = cupo
                 )
 
-                val success = activities.actualizarActividad(nuevaActividad)
+                val success = activitiesManager.actualizarActividad(nuevaActividad)
 
                 if (success) {
                     Toast.makeText(context, "Actividad actualizada", Toast.LENGTH_SHORT).show()
@@ -160,20 +156,15 @@ class ActivityAdapter(
         dialog.show()
     }
 
-    private fun showDeleteConfirmation(context: Context, actividad: ActivitiesManager.Actividad) {
+    private fun showDeleteConfirmation(context: Context, actividad: Activities) {
         val dialog = Dialog(context)
         val modalBinding = ModalConfirmDeleteBinding.inflate(LayoutInflater.from(context))
         dialog.setContentView(modalBinding.root)
 
-        dialog.window?.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-
         modalBinding.btnCancel.setOnClickListener { dialog.dismiss() }
         modalBinding.btnDelete.setOnClickListener {
-            val activities = ActivitiesManager(context)
-            val success = activities.eliminarActividad(actividad.id!!)
+            val activitiesManager = ActivitiesManager(context)
+            val success = activitiesManager.eliminarActividad(actividad.id!!)
 
             if (success) {
                 Toast.makeText(context, "Actividad eliminada", Toast.LENGTH_SHORT).show()
@@ -184,11 +175,14 @@ class ActivityAdapter(
             }
         }
 
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
         dialog.show()
     }
 
-    // Permite actualizar la lista desde afuera
-    fun actualizarLista(nuevaLista: List<ActivitiesManager.Actividad>) {
+    fun actualizarLista(nuevaLista: List<Activities>) {
         lista = nuevaLista
         notifyDataSetChanged()
     }

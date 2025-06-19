@@ -13,12 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyectointegradordam.BaseActivity
 import com.example.proyectointegradordam.R
 import com.example.proyectointegradordam.adapters.ActivityAdapter
-import com.example.proyectointegradordam.database.clubDeportivoDBHelper
 import com.example.proyectointegradordam.databinding.ActivityActividadesBinding
 import com.example.proyectointegradordam.databinding.ModalFormAssingshiftBinding
 import com.example.proyectointegradordam.databinding.ModalFormNewactivityBinding
 import com.example.proyectointegradordam.managers.ActivitiesManager
-
+import com.example.proyectointegradordam.models.Activities
 
 class ActividadesActivity : BaseActivity(), ActivityAdapter.OnActividadActualizadaListener {
 
@@ -64,13 +63,8 @@ class ActividadesActivity : BaseActivity(), ActivityAdapter.OnActividadActualiza
             resources.displayMetrics
         ).toInt()
 
-        dialog.window?.setLayout(
-            anchoPx,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-
+        dialog.window?.setLayout(anchoPx, ViewGroup.LayoutParams.WRAP_CONTENT)
         modalBinding.closeAssingShift.setOnClickListener { dialog.dismiss() }
-
         dialog.show()
     }
 
@@ -85,11 +79,9 @@ class ActividadesActivity : BaseActivity(), ActivityAdapter.OnActividadActualiza
         val modalBinding = ModalFormNewactivityBinding.inflate(layoutInflater)
         dialog.setContentView(modalBinding.root)
 
-        val activities = ActivitiesManager(this)
+        val activitiesManager = ActivitiesManager(this)
 
-        modalBinding.closeNewActivity.setOnClickListener {
-            dialog.dismiss()
-        }
+        modalBinding.closeNewActivity.setOnClickListener { dialog.dismiss() }
 
         val calendario = Calendar.getInstance()
         val formato = java.text.SimpleDateFormat("dd/MM/yyyy HH:mm", java.util.Locale.getDefault())
@@ -99,9 +91,7 @@ class ActividadesActivity : BaseActivity(), ActivityAdapter.OnActividadActualiza
             val datePicker = android.app.DatePickerDialog(
                 this,
                 { _, year, month, dayOfMonth ->
-                    calendario.set(Calendar.YEAR, year)
-                    calendario.set(Calendar.MONTH, month)
-                    calendario.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                    calendario.set(year, month, dayOfMonth)
 
                     val timePicker = android.app.TimePickerDialog(
                         this,
@@ -132,7 +122,7 @@ class ActividadesActivity : BaseActivity(), ActivityAdapter.OnActividadActualiza
             val costo = modalBinding.etCosto.text.toString().toFloatOrNull() ?: 0f
 
             if (nombre.isNotBlank() && profesor.isNotBlank() && cupo > 0 && costo >= 0 && fechaHoraSeleccionada.isNotEmpty()) {
-                val actividad = ActivitiesManager.Actividad(
+                val actividad = Activities(
                     nombre = nombre,
                     horario = fechaHoraSeleccionada,
                     dia = fechaHoraSeleccionada.split(" ")[0],
@@ -141,7 +131,7 @@ class ActividadesActivity : BaseActivity(), ActivityAdapter.OnActividadActualiza
                     cupo = cupo
                 )
 
-                val success = activities.insertarActividad(actividad)
+                val success = activitiesManager.insertarActividad(actividad)
 
                 if (success) {
                     Toast.makeText(this, "Actividad registrada", Toast.LENGTH_SHORT).show()
@@ -164,7 +154,6 @@ class ActividadesActivity : BaseActivity(), ActivityAdapter.OnActividadActualiza
         dialog.show()
     }
 
-    // Implementación de la interfaz
     override fun onActividadActualizada() {
         actualizarRecyclerView()
     }
