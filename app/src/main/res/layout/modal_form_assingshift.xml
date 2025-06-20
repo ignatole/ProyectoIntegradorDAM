@@ -38,14 +38,14 @@
         android:textColor="@color/black"
         android:textSize="20sp" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinnerClientes"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="8dp"
-        android:background="@drawable/input_border_shape"
-        android:backgroundTint="#F5F5F5"
-        android:paddingHorizontal="5dp"
-        android:paddingVertical="5dp" />
+        android:dropDownWidth="match_parent"
+        android:paddingVertical="15dp"
+        android:spinnerMode="dropdown" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -57,6 +57,7 @@
         android:textSize="20sp" />
 
     <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinnerActividades"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="8dp"

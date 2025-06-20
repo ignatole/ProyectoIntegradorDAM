@@ -3,8 +3,15 @@ package com.example.proyectointegradordam.view
 import android.app.Dialog
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.TypedValue
+import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
@@ -13,11 +20,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyectointegradordam.BaseActivity
 import com.example.proyectointegradordam.R
 import com.example.proyectointegradordam.adapters.ActivityAdapter
+import com.example.proyectointegradordam.database.clubDeportivoDBHelper
 import com.example.proyectointegradordam.databinding.ActivityActividadesBinding
 import com.example.proyectointegradordam.databinding.ModalFormAssingshiftBinding
 import com.example.proyectointegradordam.databinding.ModalFormNewactivityBinding
 import com.example.proyectointegradordam.managers.ActivitiesManager
+import com.example.proyectointegradordam.managers.InscripcionManager
 import com.example.proyectointegradordam.models.Activities
+import com.example.proyectointegradordam.models.Cliente
 
 class ActividadesActivity : BaseActivity(), ActivityAdapter.OnActividadActualizadaListener {
 
@@ -53,9 +63,85 @@ class ActividadesActivity : BaseActivity(), ActivityAdapter.OnActividadActualiza
     }
 
     private fun showModalFormAssingShift() {
+
         val dialog = Dialog(this)
         val modalBinding = ModalFormAssingshiftBinding.inflate(layoutInflater)
         dialog.setContentView(modalBinding.root)
+
+        val dbHelper = clubDeportivoDBHelper(this)
+        val inscripcionManager = InscripcionManager(this)
+
+        var clienteSeleccionado: Cliente? = null
+        var actividadSeleccionada: Activities? = null
+
+        // Obtener todos los clientes
+        val todosLosClientes = dbHelper.obtenerTodosLosClientes()
+        val spinnerClientes = modalBinding.root.findViewById<Spinner>(R.id.spinnerClientes)
+        val spinnerActividades = modalBinding.root.findViewById<Spinner>(R.id.spinnerActividades)
+
+        // Configurar el Spinner de clientes
+        val nombresClientes = listOf("Seleccionar cliente...") + todosLosClientes.map { "${it.nombre} ${it.apellido}" }
+        val adapterClientes = ArrayAdapter(this, android.R.layout.simple_spinner_item, nombresClientes)
+        adapterClientes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerClientes.adapter = adapterClientes
+
+        spinnerClientes.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                clienteSeleccionado = if (position == 0) null else todosLosClientes[position - 1]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                clienteSeleccionado = null
+            }
+        }
+
+        // Obtener actividades con cupo
+        val actividadesConCupo = inscripcionManager.obtenerActividadesConCupo()
+
+        // Configurar el Spinner de actividades
+        val nombresActividades = listOf("Seleccionar actividad...") +
+                actividadesConCupo.map { "${it.nombre} - Cupos: ${it.cupo} - ${it.dia}" }
+        val adapterActividades = ArrayAdapter(this, android.R.layout.simple_spinner_item, nombresActividades)
+        adapterActividades.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerActividades.adapter = adapterActividades
+
+        spinnerActividades.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                actividadSeleccionada = if (position == 0) null else actividadesConCupo[position - 1]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                actividadSeleccionada = null
+            }
+        }
+
+        modalBinding.closeAssingShift.setOnClickListener { dialog.dismiss() }
+
+        modalBinding.btnAddShift.setOnClickListener {
+            if (clienteSeleccionado == null) {
+                Toast.makeText(this, "Selecciona un cliente", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (actividadSeleccionada == null) {
+                Toast.makeText(this, "Selecciona una actividad", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Realizar la inscripción
+            val (success, mensaje) = inscripcionManager.inscribirClienteEnActividad(
+                clienteSeleccionado!!.id,
+                actividadSeleccionada!!.id!!
+            )
+
+            if (success) {
+                Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+                actualizarRecyclerView() // Para reflejar el cambio en los cupos
+            } else {
+                Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
+            }
+        }
 
         val anchoPx = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
@@ -64,7 +150,6 @@ class ActividadesActivity : BaseActivity(), ActivityAdapter.OnActividadActualiza
         ).toInt()
 
         dialog.window?.setLayout(anchoPx, ViewGroup.LayoutParams.WRAP_CONTENT)
-        modalBinding.closeAssingShift.setOnClickListener { dialog.dismiss() }
         dialog.show()
     }
 
