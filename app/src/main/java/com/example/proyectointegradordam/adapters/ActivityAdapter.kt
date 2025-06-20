@@ -6,6 +6,7 @@ import android.icu.util.Calendar
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import com.example.proyectointegradordam.databinding.ModalConfirmDeleteBinding
 import com.example.proyectointegradordam.databinding.ModalFormNewactivityBinding
 import com.example.proyectointegradordam.managers.ActivitiesManager
 import com.example.proyectointegradordam.models.Activities
+import kotlin.math.log
 
 class ActivityAdapter(
     private var lista: List<Activities>,
@@ -52,6 +54,7 @@ class ActivityAdapter(
         holder.binding.tvActivity.text = subrayado
         holder.binding.tvProfesor.text = actividad.profesor
         holder.binding.tvDateTime.text = actividad.dia
+        holder.binding.tvMonto.text = "$${actividad.costo}"
         holder.binding.tvCupo.text = actividad.cupo.toString()
 
         holder.binding.btnEditItem.setOnClickListener {
