@@ -10,7 +10,7 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
 
     companion object {
         const val DATABASE_NAME = "clubdeportivo.db"
-        const val DATABASE_VERSION = 3
+        const val DATABASE_VERSION = 4
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -71,9 +71,27 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
             )
         """)
 
+
+        db.execSQL("""
+            CREATE TABLE inscripcion_actividad (
+                id_inscripcion INTEGER PRIMARY KEY AUTOINCREMENT,
+                id_cliente INTEGER NOT NULL,
+                id_actividad INTEGER NOT NULL,
+                fecha_inscripcion TEXT NOT NULL,
+                activo INTEGER DEFAULT 1,
+                FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
+                FOREIGN KEY (id_actividad) REFERENCES actividad(id_actividad),
+                UNIQUE(id_cliente, id_actividad)
+            )
+        """)
+
         // Datos iniciales
         db.execSQL("INSERT INTO usuario (nombre_usuario, pass_usuario, activo, nombre, telefono) VALUES ('Test', '123456', 1, 'Test', '0000000000')")
+
+
     }
+
+
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS credito_actividades")
@@ -81,8 +99,12 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
         db.execSQL("DROP TABLE IF EXISTS actividad")
         db.execSQL("DROP TABLE IF EXISTS cuota")
         db.execSQL("DROP TABLE IF EXISTS cliente")
+        db.execSQL("DROP TABLE IF EXISTS inscripcion_actividad")
         onCreate(db)
     }
+
+
+
     fun buscarClientePorNombre(texto: String): List<Cliente>{
         val db = readableDatabase
         val cursor = db.rawQuery(
@@ -122,5 +144,25 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
 
     }
 
+    fun obtenerTodosLosClientes(): List<Cliente> {
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM cliente", null)
+        val lista = mutableListOf<Cliente>()
+        if (cursor.moveToFirst()) {
+            do {
+                lista.add(
+                    Cliente(
+                        cursor.getInt(cursor.getColumnIndexOrThrow("id_cliente")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("apellido")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("email")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("telefono"))
+                    )
+                )
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return lista
+    }
 
 }
