@@ -6,9 +6,8 @@ import android.database.Cursor
 import android.util.Log
 import com.example.proyectointegradordam.database.clubDeportivoDBHelper
 import com.example.proyectointegradordam.models.Cliente
-import java.io.Serializable
 
-class PaymentManager(private val context: Context) {
+class PaymentManager(context: Context) {
 
     private val dbHelper = clubDeportivoDBHelper(context)
 
@@ -21,51 +20,27 @@ class PaymentManager(private val context: Context) {
     ): Pair<Boolean, Long> {
         return try {
             val db = dbHelper.writableDatabase
-            // Ahora la fecha de pago se registra en numero (double)
             val fechaPago = System.currentTimeMillis()
 
-            // Insertar pago, tengo que ver acá si se registra bien el pago
-            val values = ContentValues().apply {
-                put("fecha_pago", fechaPago)
-                put("medio_pago", medioPago)
-                put("monto", monto)
-                put("tipo_cuota", if (tipo == "mensual") 1 else 2)
-                put("plazo_cuota", plazo)
-                put("id_cliente", cliente.id)
+            var ultimaFechaVencimiento = obtenerUltimaFechaVencimiento(cliente.id)
+            if (ultimaFechaVencimiento < fechaPago) {
+                ultimaFechaVencimiento = fechaPago
             }
-            val result = db.insert("cuota", null, values)
-            var nuevaFechaVencimiento: Long = 0
-            val dbLectura = dbHelper.readableDatabase
-            val cursor: Cursor = dbLectura.rawQuery(
-                "SELECT fecha_vencimiento FROM cliente WHERE id_cliente = ?",
-                arrayOf(cliente.id.toString())
-            )
-            // Actualizar fecha_vencimiento si es cuota mensual,
-            // la onda es que si fecha pago es null solo se suman 30 dias a esa para
-            // establecer fecha vencimiento, si se compra un credito tmb estaria bueno que
-            // pueda vencerse, pero solo 30 dias posteriores a la ultima compra
-            // hay que manejar cuando tiene o no cuota? LRPM
-            if (tipo == "mensual") {
-                nuevaFechaVencimiento = if (cursor.moveToFirst()) {
-                    val fechaActual = cursor.getLong(0)
-                    if (fechaActual < fechaPago) {
-                        fechaPago + 30L * 24 * 60 * 60 * 1000 // Nueva base si ya venció
-                    } else {
-                        fechaActual + 30L * 24 * 60 * 60 * 1000 // Extensión desde la fecha actual
-                    }
-                } else {
-                    fechaPago + 30L * 24 * 60 * 60 * 1000
-                }
-            } else {
-                nuevaFechaVencimiento = fechaPago + 30L * 24 * 60 * 60 * 1000
 
-                cursor.close()
+            var nuevaFechaVencimiento: Long = ultimaFechaVencimiento
 
-                val valuesUpdate = ContentValues().apply {
+            for (i in 1..plazo) {
+                nuevaFechaVencimiento += 30L * 24 * 60 * 60 * 1000
+                val values = ContentValues().apply {
+                    put("fecha_pago", fechaPago)
                     put("fecha_vencimiento", nuevaFechaVencimiento)
+                    put("medio_pago", medioPago)
+                    put("monto", monto)
+                    put("tipo_cuota", if (tipo == "mensual") 1 else 2)
+                    put("plazo_cuota", plazo)
+                    put("id_cliente", cliente.id)
                 }
-
-                db.update("cliente", valuesUpdate, "id_cliente = ?", arrayOf(cliente.id.toString()))
+                db.insert("cuota", null, values)
             }
 
             db.close()
@@ -75,10 +50,22 @@ class PaymentManager(private val context: Context) {
             return Pair(false, 0L)
         }
     }
+
+    private fun obtenerUltimaFechaVencimiento(clienteId: Int): Long {
+        val dbLectura = dbHelper.readableDatabase
+        val cursor: Cursor = dbLectura.rawQuery(
+            "SELECT MAX(fecha_vencimiento) FROM cuota WHERE id_cliente = ?",
+            arrayOf(clienteId.toString())
+        )
+        val fecha = if (cursor.moveToFirst()) cursor.getLong(0) else 0L
+        cursor.close()
+        return fecha
+    }
+
     fun registrarPagoActividad(
         cliente: Cliente,
         cantidad_creditos: Int
-        ): Boolean {
+    ): Boolean {
         return try {
             val db = dbHelper.writableDatabase
             val dbLectura = dbHelper.readableDatabase
@@ -94,14 +81,16 @@ class PaymentManager(private val context: Context) {
                 }
                 db.update("credito_actividades", valuesUpdate, "id_cliente = ?", arrayOf(cliente.id.toString()))
             } else {
-                    val values = ContentValues().apply {
-                        put("id_cliente", cliente.id)
-                        put("cantidad_creditos", cantidad_creditos)
-                    }
+                val values = ContentValues().apply {
+                    put("id_cliente", cliente.id)
+                    put("cantidad_creditos", cantidad_creditos)
+                }
                 val result = db.insert("credito_actividades", null, values)
                 db.close()
-                result != -1L
-                }
+                return result != -1L
+            }
+            cursor.close()
+            db.close()
             true
         } catch (e: Exception) {
             Log.e("PaymentManager", "Error al registrar pago: ${e.message}")

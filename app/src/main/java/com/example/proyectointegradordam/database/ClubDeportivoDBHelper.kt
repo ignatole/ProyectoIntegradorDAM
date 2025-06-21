@@ -5,12 +5,13 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.proyectointegradordam.models.Cliente
+import com.example.proyectointegradordam.models.ClienteConVencimiento
 
 class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
         const val DATABASE_NAME = "clubdeportivo.db"
-        const val DATABASE_VERSION = 7
+        const val DATABASE_VERSION = 8
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -20,7 +21,6 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
                 nombre TEXT NOT NULL,
                 apellido TEXT NOT NULL,
                 email TEXT NOT NULL,
-                fecha_vencimiento INTEGER,
                 telefono TEXT NOT NULL
             )
         """)
@@ -29,6 +29,7 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
             CREATE TABLE cuota (
                 id_pago INTEGER PRIMARY KEY AUTOINCREMENT,
                 fecha_pago LONG NOT NULL,
+                fecha_vencimiento LONG NOT NULL,
                 medio_pago TEXT NOT NULL,
                 monto INTEGER NOT NULL,
                 tipo_cuota INTEGER NOT NULL,
@@ -50,7 +51,6 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
             )
         """)
 
-
         db.execSQL("""
             CREATE TABLE usuario (
                 id_usuario INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -71,7 +71,6 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
             )
         """)
 
-
         db.execSQL("""
             CREATE TABLE inscripcion_actividad (
                 id_inscripcion INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -85,7 +84,6 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
             )
         """)
 
-        // Datos iniciales
         db.execSQL("INSERT INTO usuario (nombre_usuario, pass_usuario, activo, nombre, telefono) VALUES ('Test', '123456', 1, 'Test', '0000000000')")
         db.execSQL("INSERT INTO cliente (nombre, apellido, email, telefono) VALUES ('Juan', 'Pérez', 'juan@mail.com', '12345678')")
     }
@@ -99,15 +97,16 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
         db.execSQL("DROP TABLE IF EXISTS inscripcion_actividad")
         onCreate(db)
     }
-    fun buscarClientePorNombre(texto: String): List<Cliente>{
+
+    fun buscarClientePorNombre(texto: String): List<Cliente> {
         val db = readableDatabase
         val cursor = db.rawQuery(
             "SELECT * FROM cliente WHERE nombre LIKE ? OR apellido LIKE ?",
             arrayOf("%$texto%", "%$texto%")
         )
         val lista = mutableListOf<Cliente>()
-        if(cursor.moveToFirst()){
-            do{
+        if (cursor.moveToFirst()) {
+            do {
                 lista.add(
                     Cliente(
                         cursor.getInt(cursor.getColumnIndexOrThrow("id_cliente")),
@@ -121,21 +120,19 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
         }
         cursor.close()
         return lista
-
     }
 
     fun actualizarDatosCliente(
         id: Int,
         email: String,
         telefono: String
-    ): Int{
+    ): Int {
         val db = writableDatabase
         val values = ContentValues().apply {
             put("email", email)
             put("telefono", telefono)
         }
         return db.update("cliente", values, "id_cliente = ?", arrayOf(id.toString()))
-
     }
 
     fun obtenerTodosLosClientes(): List<Cliente> {
@@ -153,6 +150,31 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
                         cursor.getString(cursor.getColumnIndexOrThrow("telefono"))
                     )
                 )
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return lista
+    }
+    fun obtenerClientesConVencimientos(): List<ClienteConVencimiento> {
+        val lista = mutableListOf<ClienteConVencimiento>()
+        val db = readableDatabase
+
+        val query = """
+        SELECT c.nombre, c.apellido, c.telefono, MAX(q.fecha_vencimiento) as vencimiento
+        FROM cliente c
+        LEFT JOIN cuota q ON c.id_cliente = q.id_cliente
+        GROUP BY c.id_cliente
+    """.trimIndent()
+
+        val cursor = db.rawQuery(query, null)
+        if (cursor.moveToFirst()) {
+            do {
+                val nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
+                val apellido = cursor.getString(cursor.getColumnIndexOrThrow("apellido"))
+                val telefono = cursor.getString(cursor.getColumnIndexOrThrow("telefono"))
+                val vencimiento = cursor.getLong(cursor.getColumnIndexOrThrow("vencimiento"))
+
+                lista.add(ClienteConVencimiento(nombre, apellido, telefono, vencimiento))
             } while (cursor.moveToNext())
         }
         cursor.close()

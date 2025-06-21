@@ -3,7 +3,6 @@ package com.example.proyectointegradordam
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -218,6 +217,8 @@ class PaymentActivity : BaseActivity() {
 
         dialog.show()
     }
+    private val radioGroupMedioPago by lazy { findViewById<RadioGroup>(R.id.grupoFormaPago) }
+    private val radioGroupTipoPago by lazy { findViewById<RadioGroup>(R.id.grupoTipoCompra) }
 
     private fun limpiarFormulario() {
         clienteSeleccionado = null
@@ -225,10 +226,8 @@ class PaymentActivity : BaseActivity() {
         groupFormularioPago.visibility = View.GONE
         inputMonto.setText("")
         inputCantidad.setText("")
-        radioEfectivo.isChecked = false
-        radioTarjeta.isChecked = false
-        radioCuota.isChecked = false
-        radioCreditos.isChecked = false
+        radioGroupTipoPago.clearCheck()
+        radioGroupMedioPago.clearCheck()
         spinnerCuotas.setSelection(0)
     }
 }

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/modal_payment"
@@ -6,63 +5,56 @@
     android:layout_height="wrap_content"
     app:cardBackgroundColor="@color/white">
 
-
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="16dp">
 
-
         <TextView
             android:id="@+id/tvNombreCliente"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa_medium"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textAlignment="center"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tvNumeroSocio"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa_medium"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textAlignment="center"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tvVencimiento"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa_medium"
-            android:textColor="@color/black"
             android:gravity="center"
-            android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tvCantCreditos"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa_medium"
-            android:textColor="@color/black"
             android:gravity="center"
-            android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tvMetodoPagoModal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa_medium"
-            android:textColor="@color/black"
             android:gravity="center"
-            android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
