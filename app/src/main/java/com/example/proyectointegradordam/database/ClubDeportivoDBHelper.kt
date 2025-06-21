@@ -10,7 +10,7 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
 
     companion object {
         const val DATABASE_NAME = "clubdeportivo.db"
-        const val DATABASE_VERSION = 4
+        const val DATABASE_VERSION = 7
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -20,6 +20,7 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
                 nombre TEXT NOT NULL,
                 apellido TEXT NOT NULL,
                 email TEXT NOT NULL,
+                fecha_vencimiento INTEGER,
                 telefono TEXT NOT NULL
             )
         """)
@@ -27,10 +28,9 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
         db.execSQL("""
             CREATE TABLE cuota (
                 id_pago INTEGER PRIMARY KEY AUTOINCREMENT,
-                fecha_pago TEXT NOT NULL,
-                fecha_vencimiento TEXT,
+                fecha_pago LONG NOT NULL,
                 medio_pago TEXT NOT NULL,
-                monto REAL NOT NULL,
+                monto INTEGER NOT NULL,
                 tipo_cuota INTEGER NOT NULL,
                 plazo_cuota INTEGER DEFAULT 1,
                 id_cliente INTEGER,
@@ -87,11 +87,8 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
 
         // Datos iniciales
         db.execSQL("INSERT INTO usuario (nombre_usuario, pass_usuario, activo, nombre, telefono) VALUES ('Test', '123456', 1, 'Test', '0000000000')")
-
-
+        db.execSQL("INSERT INTO cliente (nombre, apellido, email, telefono) VALUES ('Juan', 'Pérez', 'juan@mail.com', '12345678')")
     }
-
-
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS credito_actividades")
@@ -102,9 +99,6 @@ class clubDeportivoDBHelper(context: Context) : SQLiteOpenHelper(context, DATABA
         db.execSQL("DROP TABLE IF EXISTS inscripcion_actividad")
         onCreate(db)
     }
-
-
-
     fun buscarClientePorNombre(texto: String): List<Cliente>{
         val db = readableDatabase
         val cursor = db.rawQuery(

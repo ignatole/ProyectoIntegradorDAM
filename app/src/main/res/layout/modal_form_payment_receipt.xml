@@ -22,7 +22,6 @@
             android:fontFamily="@font/comfortaa_medium"
             android:gravity="center"
             android:textColor="@color/black"
-            android:text="Juan Perez"
             android:textAlignment="center"
             android:textSize="20sp" />
 
@@ -33,7 +32,6 @@
             android:fontFamily="@font/comfortaa_medium"
             android:gravity="center"
             android:textColor="@color/black"
-            android:text="Socio N°1234"
             android:textAlignment="center"
             android:textSize="20sp" />
 
@@ -44,7 +42,16 @@
             android:fontFamily="@font/comfortaa_medium"
             android:textColor="@color/black"
             android:gravity="center"
-            android:text="Vencimiento: 23/06/2025"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvCantCreditos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/comfortaa_medium"
+            android:textColor="@color/black"
+            android:gravity="center"
             android:textAlignment="center"
             android:textSize="20sp" />
 
@@ -55,7 +62,6 @@
             android:fontFamily="@font/comfortaa_medium"
             android:textColor="@color/black"
             android:gravity="center"
-            android:text="Método de pago"
             android:textAlignment="center"
             android:textSize="20sp" />
 
