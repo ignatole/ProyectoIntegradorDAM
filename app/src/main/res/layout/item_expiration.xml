@@ -3,38 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="12dp"
-    android:background="@color/white">
+    android:padding="8dp"
+    android:background="#DDDDDD">
 
     <TextView
-        android:id="@+id/txtNombreCompleto"
+        android:id="@+id/text_nombre"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:fontFamily="@font/roboto"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:paddingEnd="8dp"
-        android:textColor="@color/black"/>
+        android:textColor="#000000"
+        android:padding="8dp" />
 
     <TextView
-        android:id="@+id/txtDni"
+        android:id="@+id/text_telefono"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:fontFamily="@font/roboto"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:paddingEnd="8dp"
-        android:textColor="@color/black"/>
+        android:textColor="#000000"
+        android:padding="8dp" />
 
     <TextView
-        android:id="@+id/txtFecha"
+        android:id="@+id/text_vencimiento"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:fontFamily="@font/roboto"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:textColor="@color/black"/>
+        android:textColor="#000000"
+        android:padding="8dp" />
 </LinearLayout>
