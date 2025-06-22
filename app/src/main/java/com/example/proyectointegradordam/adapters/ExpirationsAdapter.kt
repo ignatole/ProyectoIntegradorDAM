@@ -36,5 +36,4 @@ class ExpirationsAdapter(private var clientes: List<ClienteConVencimiento>) :
         val fecha = Date(cliente.vencimiento)
         holder.vencimiento.text = formato.format(fecha)
     }
-
 }

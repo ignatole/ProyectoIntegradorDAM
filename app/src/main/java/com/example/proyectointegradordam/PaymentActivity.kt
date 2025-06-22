@@ -2,20 +2,27 @@ package com.example.proyectointegradordam
 
 import android.os.Bundle
 import android.view.View
-import android.widget.*
-import androidx.appcompat.widget.SearchView
+import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.Spinner
+import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectointegradordam.adapters.ClienteAdapter
-import com.example.proyectointegradordam.database.clubDeportivoDBHelper
 import com.example.proyectointegradordam.managers.ClienteManager
 import com.example.proyectointegradordam.managers.PaymentManager
 import com.example.proyectointegradordam.models.Cliente
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import androidx.appcompat.widget.SearchView
 
 class PaymentActivity : BaseActivity() {
 
@@ -59,6 +66,9 @@ class PaymentActivity : BaseActivity() {
         radioCreditos = findViewById(R.id.radioCreditos)
         spinnerCuotas = findViewById(R.id.spinnerCuotas)
         botonPagar = findViewById(R.id.button_payment)
+
+        searchView.setIconifiedByDefault(false)
+        searchView.isIconified = false
 
         configurarSpinnerCuotas()
         configurarListeners()
