@@ -41,9 +41,13 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
         android:layout_marginTop="150dp"
-        android:background="@drawable/rounded_edittext"
-        android:queryHint="Buscar cliente por DNI"
+        android:queryHint="Buscar cliente por nombre o apellido"
         app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/payment_edittext"
+        android:iconifiedByDefault="false"
+        android:focusable="true"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
