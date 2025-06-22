@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.proyectointegradordam.databinding.ActivityBaseBinding
 import com.example.proyectointegradordam.view.MenuActivity
 import com.example.proyectointegradordam.managers.UserManager
 import com.google.android.material.textfield.TextInputLayout
@@ -20,6 +19,7 @@ class Register : AppCompatActivity() {
         userManager = UserManager(this)
 
         val editTextName = findViewById<EditText>(R.id.editTextName)
+        val editTextEmail = findViewById<EditText>(R.id.editTextEmail) // NUEVO
         val editTextPhone = findViewById<EditText>(R.id.editTextPhone)
 
         val textInputPassLayout = findViewById<TextInputLayout>(R.id.textInputPass)
@@ -33,11 +33,12 @@ class Register : AppCompatActivity() {
 
         btnNext.setOnClickListener {
             val name = editTextName.text.toString()
+            val email = editTextEmail.text.toString() // NUEVO
             val phone = editTextPhone.text.toString()
             val pass = textInputPass?.text.toString()
             val repeatPass = textInputRepeatPassword?.text.toString()
 
-            if (name.isBlank() || phone.isBlank() || pass.isBlank() || repeatPass.isBlank()) {
+            if (name.isBlank() || email.isBlank() || phone.isBlank() || pass.isBlank() || repeatPass.isBlank()) {
                 Toast.makeText(this, "Por favor completá todos los campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -52,7 +53,7 @@ class Register : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val result = userManager.insertUser(name, pass, name, phone)
+            val result = userManager.insertUser(email, pass, name, phone) // email como username
 
             if (result != -1L) {
                 Toast.makeText(this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show()

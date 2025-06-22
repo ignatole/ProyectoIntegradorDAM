@@ -81,24 +81,22 @@
             android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
             app:endIconMode="password_toggle"
+            app:hintEnabled="false"
             app:layout_constraintTop_toBottomOf="@+id/passwordTtl"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
             android:inputType="textPassword"
-            android:hint="Password">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passwordEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:background="@drawable/rounded_edittext"
-                android:paddingStart="16dp"
-                android:paddingEnd="6dp" />
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_edittext"
+            android:paddingStart="16dp"
+            android:paddingEnd="6dp" />
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <Button
             android:id="@+id/loginBtn"
