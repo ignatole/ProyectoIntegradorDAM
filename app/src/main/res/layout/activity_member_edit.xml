@@ -78,7 +78,9 @@
         app:layout_constraintTop_toBottomOf="@+id/editText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone"/>
+        android:fontFamily="@font/comfortaa_regular"
+        android:visibility="gone"
+        android:background="@drawable/recycler_vista"/>
 
 
     <EditText
@@ -89,6 +91,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         android:hint="@string/name"
+        android:fontFamily="@font/comfortaa_regular"
         android:enabled="false"
         android:inputType="textPersonName"
         app:layout_constraintTop_toBottomOf="@id/rvResultados"
@@ -96,7 +99,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/rounded_edittext"
         android:padding="12dp"
-        android:textColor="@color/black" />
+        android:textColor="@color/grey" />
 
     <EditText
         android:id="@+id/etApellidoEdit"
@@ -106,6 +109,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:hint="@string/last_name"
+        android:fontFamily="@font/comfortaa_regular"
         android:enabled="false"
         android:inputType="textPersonName"
         app:layout_constraintTop_toBottomOf="@id/etNombreEdit"
@@ -113,7 +117,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/rounded_edittext"
         android:padding="12dp"
-        android:textColor="@color/black" />
+        android:textColor="@color/grey" />
 
     <EditText
         android:id="@+id/etEmailEdit"
@@ -123,6 +127,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:hint="@string/email"
+        android:fontFamily="@font/comfortaa_regular"
         android:inputType="textEmailAddress"
         app:layout_constraintTop_toBottomOf="@id/etApellidoEdit"
         app:layout_constraintStart_toStartOf="parent"
@@ -140,6 +145,7 @@
         android:layout_marginEnd="20dp"
         android:hint="@string/tel_fono"
         android:inputType="phone"
+        android:fontFamily="@font/comfortaa_regular"
         app:layout_constraintTop_toBottomOf="@id/etEmailEdit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

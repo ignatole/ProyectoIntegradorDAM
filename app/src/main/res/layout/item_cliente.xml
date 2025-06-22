@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<TextView
+xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvNombreCompleto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="4dp"
-    android:layout_marginHorizontal="8dp"
-    android:foreground="?attr/selectableItemBackground"
-    android:elevation="4dp"
-    android:padding="12dp">
+    android:padding="16dp"
+    android:textSize="16sp"
+    android:fontFamily="@font/comfortaa_regular"
+    android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/tvNombreCompleto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nombre_cliente"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-</androidx.cardview.widget.CardView>

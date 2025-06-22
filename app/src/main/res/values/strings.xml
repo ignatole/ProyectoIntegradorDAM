@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">ProyectoIntegradorDAM</string>
-    
-    //Payments
-    <string name="Cliente">Cliente: %1$s, %2$s</string>
 
     //VIEW_MENU
     <string name="title_userName">Hola, Jane</string>
@@ -99,6 +96,4 @@
     <string name="jane_doe">Jane Doe</string>
     <string name="_5411123456789">+5411123456789</string>
     <string name="iniciar_sesi_n">INICIAR SESION</string>
-    <string name="nombre_cliente">Nombre Cliente</string>
-    <string name="cliente_sin_seleccionar">" "</string>
 </resources>
