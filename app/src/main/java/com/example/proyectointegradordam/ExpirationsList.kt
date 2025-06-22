@@ -6,11 +6,10 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectointegradordam.adapters.ExpirationsAdapter
-import com.example.proyectointegradordam.database.clubDeportivoDBHelper
+import com.example.proyectointegradordam.managers.ClienteManager
 import com.example.proyectointegradordam.models.ClienteConVencimiento
 
 class ExpirationsList : BaseActivity() {
-
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ExpirationsAdapter
@@ -28,8 +27,8 @@ class ExpirationsList : BaseActivity() {
         recyclerView = findViewById(R.id.recycler_expiration)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val dbHelper = clubDeportivoDBHelper(this)
-        val lista: List<ClienteConVencimiento> = dbHelper.obtenerClientesConVencimientos()
+        val clienteManager = ClienteManager(this)
+        val lista: List<ClienteConVencimiento> = clienteManager.obtenerClientesConVencimientos()
 
         adapter = ExpirationsAdapter(lista)
         recyclerView.adapter = adapter

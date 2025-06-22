@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectointegradordam.adapters.ClienteAdapter
 import com.example.proyectointegradordam.database.clubDeportivoDBHelper
+import com.example.proyectointegradordam.managers.ClienteManager
 import com.example.proyectointegradordam.managers.PaymentManager
 import com.example.proyectointegradordam.models.Cliente
 import java.text.SimpleDateFormat
@@ -90,8 +91,8 @@ class PaymentActivity : BaseActivity() {
     }
 
     private fun buscarClientes(texto: String) {
-        val dbHelper = clubDeportivoDBHelper(this)
-        val clientes = dbHelper.buscarClientePorNombre(texto)
+        val clienteManager = ClienteManager(this)
+        val clientes = clienteManager.buscarClientePorNombre(texto)
         adapterClientes.updateData(clientes)
         recyclerClientes.visibility = if (clientes.isNotEmpty()) View.VISIBLE else View.GONE
     }

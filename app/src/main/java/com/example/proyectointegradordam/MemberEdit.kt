@@ -4,21 +4,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectointegradordam.adapters.ClienteAdapter
-import com.example.proyectointegradordam.database.clubDeportivoDBHelper
+import com.example.proyectointegradordam.managers.ClienteManager
 
 class MemberEdit : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_member_edit)
 
         val etIdCliente = findViewById<EditText>(R.id.etIdCliente)
@@ -28,7 +24,8 @@ class MemberEdit : BaseActivity() {
         val etTelefonoEdit = findViewById<EditText>(R.id.etTelefonoEdit)
         val recyclerView = findViewById<RecyclerView>(R.id.rvResultados)
 
-        val dbHelper = clubDeportivoDBHelper(this)
+        val clienteManager = ClienteManager(this)
+
         val adapter = ClienteAdapter { cliente ->
             etIdCliente.setText(cliente.id.toString())
             etNombreEdit.setText(cliente.nombre)
@@ -37,23 +34,21 @@ class MemberEdit : BaseActivity() {
             etTelefonoEdit.setText(cliente.telefono)
 
             recyclerView.visibility = View.GONE
-
         }
+
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val editTextBuscar = findViewById<EditText>(R.id.editText)
-        editTextBuscar.addTextChangedListener(object : android.text.TextWatcher{
-            override fun afterTextChanged(s: android.text.Editable?){
+        editTextBuscar.addTextChangedListener(object : android.text.TextWatcher {
+            override fun afterTextChanged(s: android.text.Editable?) {}
 
-            }
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int){
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            }
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int){
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val texto = s.toString()
-                val resultados = dbHelper.buscarClientePorNombre(texto)
-                if(resultados.isNotEmpty()){
+                val resultados = clienteManager.buscarClientePorNombre(texto)
+                if (resultados.isNotEmpty()) {
                     recyclerView.visibility = View.VISIBLE
                     adapter.updateData(resultados)
                 } else {
@@ -63,18 +58,18 @@ class MemberEdit : BaseActivity() {
         })
 
         val btnActualizar = findViewById<Button>(R.id.btnActualizar)
-        btnActualizar.setOnClickListener{
+        btnActualizar.setOnClickListener {
             val id = etIdCliente.text.toString().toIntOrNull()
             val email = etEmailEdit.text.toString().trim()
             val telefono = etTelefonoEdit.text.toString().trim()
 
-            if(id == null || email.isEmpty() || telefono.isEmpty()){
+            if (id == null || email.isEmpty() || telefono.isEmpty()) {
                 Toast.makeText(this, "Completá el email y teléfono", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val filasActualizadas = dbHelper.actualizarDatosCliente(id, email, telefono)
-            if (filasActualizadas > 0){
+            val filasActualizadas = clienteManager.actualizarDatosCliente(id, email, telefono)
+            if (filasActualizadas > 0) {
                 Toast.makeText(this, "Datos actualizados con éxito", Toast.LENGTH_SHORT).show()
                 etIdCliente.setText("")
                 etNombreEdit.setText("")
@@ -85,7 +80,6 @@ class MemberEdit : BaseActivity() {
                 Toast.makeText(this, "Error al actualizar los datos", Toast.LENGTH_SHORT).show()
             }
         }
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

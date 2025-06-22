@@ -26,6 +26,7 @@ import com.example.proyectointegradordam.databinding.ModalFormAssingshiftBinding
 import com.example.proyectointegradordam.databinding.ModalFormNewactivityBinding
 import com.example.proyectointegradordam.managers.ActivitiesManager
 import com.example.proyectointegradordam.managers.InscripcionManager
+import com.example.proyectointegradordam.managers.ClienteManager
 import com.example.proyectointegradordam.models.Activities
 import com.example.proyectointegradordam.models.Cliente
 
@@ -68,16 +69,17 @@ class ActividadesActivity : BaseActivity(), ActivityAdapter.OnActividadActualiza
         val modalBinding = ModalFormAssingshiftBinding.inflate(layoutInflater)
         dialog.setContentView(modalBinding.root)
 
-        val dbHelper = clubDeportivoDBHelper(this)
+        val clienteManager = ClienteManager(this)
         val inscripcionManager = InscripcionManager(this)
 
         var clienteSeleccionado: Cliente? = null
         var actividadSeleccionada: Activities? = null
 
         // Obtener todos los clientes
-        val todosLosClientes = dbHelper.obtenerTodosLosClientes()
+        val todosLosClientes = clienteManager.obtenerTodosLosClientes()
         val spinnerClientes = modalBinding.root.findViewById<Spinner>(R.id.spinnerClientes)
         val spinnerActividades = modalBinding.root.findViewById<Spinner>(R.id.spinnerActividades)
+
 
         // Configurar el Spinner de clientes
         val nombresClientes = listOf("Seleccionar cliente...") + todosLosClientes.map { "${it.nombre} ${it.apellido}" }
