@@ -16,6 +16,26 @@ class InscripcionManager(private val context: Context) {
         return try {
             db.beginTransaction()
 
+            // Obtener timestamp actual en milisegundos
+            val ahora = System.currentTimeMillis()
+
+            // Validar cuotas activas y no vencidas (tipo 1 o 2)
+            val cursorCuotas = db.rawQuery("""
+            SELECT COUNT(*) FROM cuota
+            WHERE id_cliente = ?
+              AND tipo_cuota IN (1, 2)
+              AND fecha_vencimiento >= ?
+        """, arrayOf(idCliente.toString(), ahora.toString()))
+
+            cursorCuotas.moveToFirst()
+            val cuotasVigentes = cursorCuotas.getInt(0) > 0
+            cursorCuotas.close()
+
+            if (!cuotasVigentes) {
+                db.endTransaction()
+                return Pair(false, "El cliente no tiene creditos vigentes para este mes")
+            }
+
             // Verificar si la actividad tiene cupos disponibles
             val cursorActividad = db.rawQuery(
                 "SELECT cupo FROM actividad WHERE id_actividad = ?",
@@ -96,6 +116,8 @@ class InscripcionManager(private val context: Context) {
             db.close()
         }
     }
+
+
 
     fun cancelarInscripcion(idInscripcion: Int): Pair<Boolean, String> {
         val db = dbHelper.writableDatabase
