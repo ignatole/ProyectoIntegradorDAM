@@ -63,6 +63,9 @@ class RegistroSocio : BaseActivity() {
                     Toast.makeText(this, "Error al registrar socio", Toast.LENGTH_SHORT).show()
                 }
             }
+
+        }
+
+
         }
     }
-}

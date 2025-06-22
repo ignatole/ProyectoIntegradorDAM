@@ -21,26 +21,6 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
 
-<!--    <ImageButton-->
-<!--        android:id = "@+id/btnBack"-->
-<!--        android:layout_width="27dp"-->
-<!--        android:layout_height="19dp"-->
-<!--        android:layout_marginTop="64dp"-->
-<!--        android:layout_marginEnd="368dp"-->
-<!--        android:contentDescription="@string/icono_volver"-->
-<!--        android:src="@drawable/baseline_undo_24"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/main" />-->
-
-<!--    <ImageButton-->
-<!--        android:layout_width="27dp"-->
-<!--        android:layout_height="19dp"-->
-<!--        android:layout_marginTop="64dp"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        android:contentDescription="@string/icono_hambur"-->
-<!--        android:src="@drawable/menu_hamburguesa"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/main" />-->
     <TextView
         android:id="@+id/register_text"
         android:layout_width="wrap_content"
@@ -55,7 +35,6 @@
         android:textSize="30sp"
         android:fontFamily="@font/comfortaa_medium"
         />
-
 
 
     <TextView

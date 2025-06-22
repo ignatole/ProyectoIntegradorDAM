@@ -28,7 +28,6 @@ import com.example.proyectointegradordam.managers.ActivitiesManager
 import com.example.proyectointegradordam.managers.InscripcionManager
 import com.example.proyectointegradordam.models.Activities
 import com.example.proyectointegradordam.models.Cliente
-import com.example.proyectointegradordam.managers.EditClienteManager
 
 class ActividadesActivity : BaseActivity(), ActivityAdapter.OnActividadActualizadaListener {
 
@@ -71,13 +70,12 @@ class ActividadesActivity : BaseActivity(), ActivityAdapter.OnActividadActualiza
 
         val dbHelper = clubDeportivoDBHelper(this)
         val inscripcionManager = InscripcionManager(this)
-        val editClienteManager = EditClienteManager(this)
 
         var clienteSeleccionado: Cliente? = null
         var actividadSeleccionada: Activities? = null
 
         // Obtener todos los clientes
-        val todosLosClientes = editClienteManager.obtenerTodosLosClientes()
+        val todosLosClientes = dbHelper.obtenerTodosLosClientes()
         val spinnerClientes = modalBinding.root.findViewById<Spinner>(R.id.spinnerClientes)
         val spinnerActividades = modalBinding.root.findViewById<Spinner>(R.id.spinnerActividades)
 

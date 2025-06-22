@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectointegradordam.adapters.ClienteAdapter
 import com.example.proyectointegradordam.database.clubDeportivoDBHelper
-import com.example.proyectointegradordam.managers.EditClienteManager
 
 class MemberEdit : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +21,6 @@ class MemberEdit : BaseActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_member_edit)
 
-        val editClienteManager = EditClienteManager(this)
         val etIdCliente = findViewById<EditText>(R.id.etIdCliente)
         val etNombreEdit = findViewById<EditText>(R.id.etNombreEdit)
         val etApellidoEdit = findViewById<EditText>(R.id.etApellidoEdit)
@@ -54,7 +52,7 @@ class MemberEdit : BaseActivity() {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int){
                 val texto = s.toString()
-                val resultados = editClienteManager.buscarClientePorNombre(texto)
+                val resultados = dbHelper.buscarClientePorNombre(texto)
                 if(resultados.isNotEmpty()){
                     recyclerView.visibility = View.VISIBLE
                     adapter.updateData(resultados)
@@ -75,7 +73,7 @@ class MemberEdit : BaseActivity() {
                 return@setOnClickListener
             }
 
-            val filasActualizadas = editClienteManager.actualizarDatosCliente(id, email, telefono)
+            val filasActualizadas = dbHelper.actualizarDatosCliente(id, email, telefono)
             if (filasActualizadas > 0){
                 Toast.makeText(this, "Datos actualizados con éxito", Toast.LENGTH_SHORT).show()
                 etIdCliente.setText("")
